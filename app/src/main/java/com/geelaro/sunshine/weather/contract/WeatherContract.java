@@ -6,12 +6,15 @@ package com.geelaro.sunshine.weather.contract;
 
 public interface WeatherContract {
     interface Model {
+        void loadWeather();
     }
 
     interface View {
+        void showWeather();
+        void showError();
     }
 
     interface Presenter {
-
+        void getWeather();
     }
 }

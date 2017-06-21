@@ -8,4 +8,9 @@ import com.geelaro.sunshine.weather.contract.WeatherContract;
 
 public class WeatherPresenter implements WeatherContract.Presenter {
 
+
+    @Override
+    public void getWeather() {
+
+    }
 }
