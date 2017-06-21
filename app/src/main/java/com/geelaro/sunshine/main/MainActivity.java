@@ -1,4 +1,4 @@
-package com.geelaro.sunshine;
+package com.geelaro.sunshine.main;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,10 +10,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.geelaro.sunshine.R;
+import com.geelaro.sunshine.main.contract.MainContract;
 import com.geelaro.sunshine.weather.WeatherFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,MainContract.View{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,20 +75,46 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_weather) {
             // Handle the camera action
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container,new WeatherFragment())
-                    .commit();
+           switch2Weather();
 
         } else if (id == R.id.nav_news) {
+            switch2News();
 
         } else if (id == R.id.nav_gallery) {
+            switch2Images();
 
-        } else if (id == R.id.nav_manage) {
-
+        } else if (id == R.id.nav_about) {
+            switch2About();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void switch2Weather() {
+        // Handle the camera action
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container,new WeatherFragment())
+                .commit();
+    }
+
+    @Override
+    public void switch2News() {
+//        getFragmentManager().beginTransaction()
+//                .replace(R.id.container,new NewsFragment())
+//                .commit();
+
+    }
+
+    @Override
+    public void switch2Images() {
+
+    }
+
+    @Override
+    public void switch2About() {
+
     }
 }

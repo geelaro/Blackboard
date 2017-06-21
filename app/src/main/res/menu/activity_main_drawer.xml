@@ -16,9 +16,9 @@
             android:title="Gallery" />
 
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Settings" />
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_menu_about"
+            android:title="About Me" />
     </group>
 
     <!--<item android:title="Communicate">-->

@@ -9,9 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.geelaro.sunshine.R;
+import com.geelaro.sunshine.weather.presenter.FetchWeatherTask;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by LEE on 2017/6/19.
@@ -22,7 +22,6 @@ public class WeatherFragment extends Fragment {
     private final static String TAG = WeatherFragment.class.getSimpleName();
     private ArrayAdapter<String> mWeatherAdapter;
 
-    private List<String> mData;
 
     public WeatherFragment() {
         super();
@@ -32,27 +31,37 @@ public class WeatherFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true); //重写菜单生效
-        mData = new ArrayList<>();
-        mData.add("One is Sunny");
-        mData.add("Two is Raining");
-        mData.add("Three is Cold");
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.frame_weather,container,false);
+        View rootView = inflater.inflate(R.layout.frame_weather, container, false);
 
         mWeatherAdapter = new ArrayAdapter<>(getActivity(),
                 R.layout.list_item_weather,
                 R.id.list_item_textview,
-                mData);
+                new ArrayList<String>());
 
 
-        ListView listView = (ListView)rootView.findViewById(R.id.listview_weather);
+        ListView listView = (ListView) rootView.findViewById(R.id.listview_weather);
         listView.setAdapter(mWeatherAdapter);
         return rootView;
+    }
+
+    private void updateWeather() {
+        FetchWeatherTask weatherTask = new FetchWeatherTask(getActivity(), mWeatherAdapter);
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+//        String location = prefs.getString(getString(R.string.pref_location_key),
+//                getString(R.string.pref_default_location_value));
+        weatherTask.execute("94043");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        updateWeather();
     }
 
 
