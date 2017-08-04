@@ -12,32 +12,43 @@ import android.view.MenuItem;
 
 import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.main.contract.MainContract;
+import com.geelaro.sunshine.main.presenter.MainPresenter;
 import com.geelaro.sunshine.weather.WeatherFragment;
 
-public class MainActivity extends AppCompatActivity
+public class MainHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,MainContract.View{
+
+    private Toolbar toolbar;
+    private DrawerLayout drawer;
+    private ActionBarDrawerToggle toggle;
+    private NavigationView navigationView;
+
+    private MainContract.Presenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        mainPresenter = new MainPresenter(this);
+
+        switch2Weather();//首次进入程序是WeatherFragment
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -73,31 +84,19 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_weather) {
-            // Handle the camera action
-           switch2Weather();
-
-        } else if (id == R.id.nav_news) {
-            switch2News();
-
-        } else if (id == R.id.nav_gallery) {
-            switch2Images();
-
-        } else if (id == R.id.nav_about) {
-            switch2About();
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mainPresenter.switchNavigation(id);
+        item.setChecked(true);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     @Override
     public void switch2Weather() {
-        // Handle the camera action
+        // Handle the WeatherFragment action
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container,new WeatherFragment())
                 .commit();
+        toolbar.setTitle(R.string.fragment_weather);
     }
 
     @Override

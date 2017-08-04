@@ -1,7 +1,7 @@
 package com.geelaro.sunshine.main.contract;
 
 /**
- * Created by Administrator on 2017/6/21.
+ * Created by geelaro on 2017/6/21.
  */
 
 public interface MainContract {

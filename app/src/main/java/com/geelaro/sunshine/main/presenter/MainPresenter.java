@@ -4,7 +4,7 @@ import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.main.contract.MainContract;
 
 /**
- * Created by Administrator on 2017/6/21.
+ * Created by geelaro on 2017/6/21.
  */
 
 public class MainPresenter implements MainContract.Presenter {
