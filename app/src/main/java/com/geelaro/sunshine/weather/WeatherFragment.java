@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.utils.HttpUtils;
+import com.geelaro.sunshine.utils.ToolUtils;
 import com.geelaro.sunshine.weather.model.data.WeatherInfo.WeatherEntry;
 import com.geelaro.sunshine.weather.presenter.FetchWeatherTask;
 
@@ -77,7 +78,7 @@ public class WeatherFragment extends Fragment implements LoaderManager.LoaderCal
         super.onStart();
         updateWeather();
 
-        HttpUtils.newInstance();
+
     }
 
 

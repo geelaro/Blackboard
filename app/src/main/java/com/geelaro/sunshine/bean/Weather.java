@@ -1,6 +1,5 @@
 package com.geelaro.sunshine.bean;
 
-import com.geelaro.sunshine.utils.HttpUtils;
 
 /**
  * Created by geelaro on 2017/6/22.
@@ -8,18 +7,18 @@ import com.geelaro.sunshine.utils.HttpUtils;
 
 public class Weather {
 
-//    private String cityName;
-//    private int imgId; //天气图
-//    private String desc; //天气状况
-//    private Long maxTemp;//最高温
-//    private Long minTemp //最低温
-//
-//    public String getCityName() {
-//        return cityName;
-//    }
-//
-//    public int getImgId() {
-//        return imgId;
-//    }
+    private String cityName;
+    private int imgId; //天气图
+    private String desc; //天气状况
+    private Long maxTemp;//最高温
+    private Long minTemp;//最低温
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public int getImgId() {
+        return imgId;
+    }
 
 }

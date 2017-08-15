@@ -7,12 +7,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.main.contract.MainContract;
 import com.geelaro.sunshine.main.presenter.MainPresenter;
+import com.geelaro.sunshine.utils.ShowToast;
 import com.geelaro.sunshine.weather.WeatherFragment;
 
 public class MainHomeActivity extends AppCompatActivity
@@ -24,6 +26,8 @@ public class MainHomeActivity extends AppCompatActivity
     private NavigationView navigationView;
 
     private MainContract.Presenter mainPresenter;
+
+    private long exitTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,21 @@ public class MainHomeActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                ShowToast.Short("再按一次退出程序");
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

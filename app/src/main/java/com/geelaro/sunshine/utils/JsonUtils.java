@@ -5,4 +5,6 @@ package com.geelaro.sunshine.utils;
  */
 
 public class JsonUtils {
+
+
 }
