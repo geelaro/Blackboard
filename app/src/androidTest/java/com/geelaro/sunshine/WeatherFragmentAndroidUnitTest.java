@@ -25,7 +25,7 @@ public class WeatherFragmentAndroidUnitTest  {
         onView(withId(R.id.list_item_textview))
                 .perform(click());
 
-        onData(withText(R.id.textView)).perform();
+        onData(withText(R.id.container)).perform();
 
 
     }

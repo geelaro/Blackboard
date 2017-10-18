@@ -1,6 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <resources>
     <string name="app_name">SunshinePro</string>
 
+    <string name="author_name">Geelaro</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -8,10 +10,10 @@
     <string name="action_refresh">Refresh</string>
 
     <!--Fragment Names-->
-    <string name="fragment_weather">Weather</string>
-    <string name="fragment_news">News</string>
-    <string name="fragment_images">Gallery</string>
-    <string name="fragment_me">About ME</string>
+    <string name="fragment_weather">天气</string>
+    <string name="fragment_news">新闻</string>
+    <string name="fragment_images">图片</string>
+    <string name="fragment_me">关于我</string>
 
     <!--Units setting-->
     <string name="pref_units_key">units</string>
@@ -20,6 +22,13 @@
 
     <!--Location ID-->
     <string name="default_location_value">94043</string>
+    <string name="default_location_city">Nanjing</string>
+
+    <!--About Me -->
+    <string name="app_description">SunshinePro是一个集天气、新闻、图片的聚合App。</string>
+    <string name="app_url">项目地址：https://github.com/geelaro/SunshinePro</string>
+    <string name="author">作者：Geelaro Li</string>>
+    <string name="app_email">邮箱：geelaro.li@gmail.com</string>
 
 
 </resources>

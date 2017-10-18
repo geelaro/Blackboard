@@ -1,33 +1,25 @@
 package com.geelaro.sunshine.weather;
 
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
+import android.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.geelaro.sunshine.R;
-import com.geelaro.sunshine.utils.HttpUtils;
-import com.geelaro.sunshine.utils.ToolUtils;
-import com.geelaro.sunshine.weather.model.data.WeatherInfo.WeatherEntry;
 import com.geelaro.sunshine.weather.presenter.FetchWeatherTask;
 
 import java.util.ArrayList;
 
-import okhttp3.OkHttpClient;
 
 /**
- * Created by LEE on 2017/6/19.
+ * Created by geelaro on 2017/6/19.
  */
 
-public class WeatherFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
+public class WeatherFragment extends Fragment {
 
     private final static String TAG = WeatherFragment.class.getSimpleName();
     private final static int ID_WEATHER_LOADER = 11;
@@ -43,8 +35,7 @@ public class WeatherFragment extends Fragment implements LoaderManager.LoaderCal
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true); //重写菜单生效
 
-        getLoaderManager().initLoader(ID_WEATHER_LOADER,null,this);
-
+//        getLoaderManager().initLoader(ID_WEATHER_LOADER,null,this);
 
 
     }
@@ -65,51 +56,25 @@ public class WeatherFragment extends Fragment implements LoaderManager.LoaderCal
         return rootView;
     }
 
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+
+        super.onPrepareOptionsMenu(menu);
+
+    }
+
     private void updateWeather() {
         FetchWeatherTask weatherTask = new FetchWeatherTask(getActivity(), mWeatherAdapter);
 //        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 //        String location = prefs.getString(getString(R.string.pref_location_key),
 //                getString(R.string.pref_default_location_value));
-        weatherTask.execute(String.valueOf(R.string.default_location_value));
+        weatherTask.execute(String.valueOf(R.string.default_location_city));
     }
 
     @Override
     public void onStart() {
         super.onStart();
         updateWeather();
-
-
-    }
-
-
-    @Override
-    public Loader<Cursor> onCreateLoader(int loaderId, Bundle args) {
-
-        switch (loaderId){
-            case ID_WEATHER_LOADER:
-                Uri weatherQueryUri = WeatherEntry.CONTENT_URI;
-
-                CursorLoader loader = new CursorLoader(getContext(),
-                        weatherQueryUri,
-                        null,
-                        null,
-                        null,
-                        null);
-                return loader;
-            default:
-                throw  new RuntimeException("Loader Not Implemented: "+loaderId);
-        }
-
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-
     }
 
 

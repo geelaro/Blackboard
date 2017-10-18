@@ -9,17 +9,19 @@ import android.widget.Toast;
 public class ShowToast {
     /**
      * Short Toast
+     *
      * @param text
      */
-    public static void Short(CharSequence text){
-        Toast.makeText(SunshineApp.getContext(),text,Toast.LENGTH_SHORT).show();
+    public static void Short(CharSequence text) {
+        Toast.makeText(SunshineApp.getContext(), text, Toast.LENGTH_SHORT).show();
     }
 
     /**
      * Long Toast
+     *
      * @param text
      */
-    public static void Long(CharSequence text){
-        Toast.makeText(SunshineApp.getContext(),text,Toast.LENGTH_LONG).show();
+    public static void Long(CharSequence text) {
+        Toast.makeText(SunshineApp.getContext(), text, Toast.LENGTH_LONG).show();
     }
 }

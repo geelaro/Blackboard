@@ -10,8 +10,11 @@ public interface MainContract {
 
     interface View {
         void switch2Weather();
+
         void switch2News();
+
         void switch2Images();
+
         void switch2About();
     }
 

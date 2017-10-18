@@ -6,9 +6,14 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
+
+import com.geelaro.sunshine.BuildConfig;
 
 import java.util.List;
 
@@ -24,7 +29,7 @@ public class ToolUtils {
 
     private static void getLocation() {
         LocationManager locationManager = (LocationManager)
-               mContext.getSystemService(Context.LOCATION_SERVICE);
+                mContext.getSystemService(Context.LOCATION_SERVICE);
         //
         List<String> providerList = locationManager.getProviders(true);
         String provider = null;
@@ -53,7 +58,7 @@ public class ToolUtils {
         }
         Location location = locationManager.getLastKnownLocation(provider);
 
-        mLat= location.getLatitude();
+        mLat = location.getLatitude();
         mLon = location.getLongitude();
 
     }
@@ -81,15 +86,72 @@ public class ToolUtils {
     };
 
     /**
-     *
      * @return 返回经纬度
      */
-    public static Double[] getLatAndLon(){
+    public static Double[] getLatAndLon() {
         getLocation();
         Double[] sNum = new Double[2];
         sNum[0] = mLat;
         sNum[1] = mLon;
         return sNum;
     }
+
+
+    /**
+     * 判断网络情况
+     *
+     * @param context
+     * @return boolean
+     */
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return networkInfo.isAvailable();
+    }
+    /**
+     * 获取当前设备屏幕宽度in pixel
+     */
+    public static int getWidthInPx(Context context){
+        int width = context.getResources().getDisplayMetrics().widthPixels;
+        return width;
+    }
+
+    public static int getHeightInPx(Context context){
+        int height = context.getResources().getDisplayMetrics().heightPixels;
+        return height;
+    }
+
+    public static float getWidth(Context context){
+        float density =  context.getResources().getDisplayMetrics().density;
+        return density;
+    }
+
+
+    public static Uri getWeatherURL() {
+        String format = "json";
+        String units = "metric";
+        int numDays = 7;
+        String param = "Nanjing";
+
+        final String QUERY_PARAM = "q";
+        final String FORMAT_PARAM = "mode";
+        final String UNITS_PARAM = "units";
+        final String DAYS_PARAM = "cnt";
+        final String APPID_PARAM = "APPID";
+
+        Uri builtUri = Uri.parse(Urls.WEATHER_BASE_URL).buildUpon()
+                .appendQueryParameter(QUERY_PARAM, param)
+                .appendQueryParameter(FORMAT_PARAM, format)
+                .appendQueryParameter(UNITS_PARAM, units)
+                .appendQueryParameter(DAYS_PARAM, Integer.toString(numDays))
+                .appendQueryParameter(APPID_PARAM, BuildConfig.OPEN_WEATHER_API_KEY)
+                .build();
+
+        return builtUri;
+    }
+
+
+
 
 }

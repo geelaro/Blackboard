@@ -4,10 +4,9 @@ import android.util.Log;
 
 /**
  * Created by geelaro on 2017/8/10.
- *
  */
 
-public class LogUtil {
+public class SunLog {
     //设置日志等级码
     public static final int VERBOSE = 1;
     public static final int DEBUG = 2;
@@ -16,7 +15,7 @@ public class LogUtil {
     public static final int ERROR = 5;
     public static final int NOTHING = 6;
     //设置打印日志level
-    public static final int LEVEL = VERBOSE;
+    public static final int LEVEL = DEBUG;
 
     public static void v(String tag, String msg) {
         if (LEVEL <= VERBOSE) {
@@ -45,6 +44,12 @@ public class LogUtil {
     public static void e(String tag, String msg) {
         if (LEVEL <= ERROR) {
             Log.e(tag, msg);
+        }
+    }
+
+    public static void e(String tag, String msg, Exception e) {
+        if (LEVEL <= ERROR) {
+            Log.e(tag, msg, e);
         }
     }
 

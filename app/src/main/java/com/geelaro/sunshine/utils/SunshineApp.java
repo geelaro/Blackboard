@@ -18,7 +18,7 @@ public class SunshineApp extends Application {
         context = getApplicationContext();
     }
 
-    public static Context getContext(){
+    public static Context getContext() {
         return context;
     }
 }
