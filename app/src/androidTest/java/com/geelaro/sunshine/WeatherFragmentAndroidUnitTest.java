@@ -22,7 +22,7 @@ public class WeatherFragmentAndroidUnitTest  {
 
 
     public void testOnCreate(){
-        onView(withId(R.id.list_item_textview))
+        onView(withId(R.id.weatherTemp))
                 .perform(click());
 
         onData(withText(R.id.container)).perform();

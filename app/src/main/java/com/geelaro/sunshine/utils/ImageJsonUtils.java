@@ -33,7 +33,6 @@ public class ImageJsonUtils {
             JsonArray jsonArray = parser.parse(res).getAsJsonArray();
             for (JsonElement image : jsonArray) {
                 ImageBean news = JsonUtils.deserialize((JsonObject) image, ImageBean.class);
-                SunLog.d(TAG, news.getTitle() + " " + news.getThumburl());
                 imageBeanList.add(news);
 //            JSONArray jsonArray = new JSONArray(res);
 //            for (int i =0;i<jsonArray.length();i++){

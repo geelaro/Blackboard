@@ -9,4 +9,11 @@
     <color name="color_nav_start">#81C784</color>
     <color name="color_nav_center">#4caf50</color>
     <color name="color_nav_end">#2E7D32</color>
+
+    <color name="colorToolBar">#393A3E</color>
+    <color name="colorBlack">#000000</color>>
+    <!-- color of text -->
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+
 </resources>

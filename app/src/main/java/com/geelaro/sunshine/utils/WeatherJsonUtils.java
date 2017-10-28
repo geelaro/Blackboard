@@ -39,7 +39,7 @@ public class WeatherJsonUtils {
         return list;
     }
 
-    private List<WeatherBean> getWeatherDataFromJson(String forecastJsonStr, int numDays)
+    public static List<WeatherBean> getWeatherDataFromJson(String forecastJsonStr)
             throws JSONException {
 
         List<WeatherBean> weatherBeanList = new ArrayList<>();
@@ -50,6 +50,7 @@ public class WeatherJsonUtils {
         final String OWM_MAX = "max";
         final String OWM_MIN = "min";
         final String OWM_DESCRIPTION = "main";
+        final String OWM_ID="id";
 
         JSONObject forecastJson = new JSONObject(forecastJsonStr);
         JSONArray weatherArray = forecastJson.getJSONArray(OWM_LIST);
@@ -76,8 +77,9 @@ public class WeatherJsonUtils {
         for (int i = 0; i < weatherArray.length(); i++) {
             // For now, using the format "Day, description, hi/low"
             String day;
-            String description;
+            String weatherDesc;
             String highAndLow;
+            int weatherId;
 
             // Get the JSON object representing the day
             JSONObject dayForecast = weatherArray.getJSONObject(i);
@@ -92,7 +94,8 @@ public class WeatherJsonUtils {
 
             // description is in a child array called "weather", which is 1 element long.
             JSONObject weatherObject = dayForecast.getJSONArray(OWM_WEATHER).getJSONObject(0);
-            description = weatherObject.getString(OWM_DESCRIPTION);
+            weatherDesc = weatherObject.getString(OWM_DESCRIPTION);
+            weatherId = weatherObject.getInt(OWM_ID);
 
             // Temperatures are in a child object called "temp".  Try not to name variables
             // "temp" when working with temperature.  It confuses everybody.
@@ -101,10 +104,12 @@ public class WeatherJsonUtils {
             long low = formatTemp(temperatureObject.getDouble(OWM_MIN));
 
             WeatherBean weather = new WeatherBean();
-            weather.setDesc(description);
+            weather.setDesc(weatherDesc);
             weather.setMaxTemp(high);
             weather.setMinTemp(low);
-
+            weather.setDate(day);
+            weather.setWeatherId(weatherId);
+            ShowToast.Short(weatherDesc+day+weatherId);
             weatherBeanList.add(weather);
 
         }
@@ -123,7 +128,7 @@ public class WeatherJsonUtils {
         return roundedTemp;
     }
 
-    private String getReadableDateString(long time) {
+    private static String getReadableDateString(long time) {
         // Because the API returns a unix timestamp (measured in seconds),
         // it must be converted to milliseconds in order to be converted to valid date.
         SimpleDateFormat shortenedDateFormat = new SimpleDateFormat("EEE MMM dd");

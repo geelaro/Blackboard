@@ -90,16 +90,15 @@ public class OkHttpUtils {
             public void onResponse(Call call, Response response) {
                 try {
                     String str = response.body().string();
-                    SunLog.d(TAG,"str"+str);
 
                     if (callback.mType == String.class) {
                         sendSuccessCallBack(callback, str);
-                        SunLog.d(TAG,"str"+str);
+                        SunLog.d(TAG,"str: "+str);
                     } else {
                         Gson gson = new GsonBuilder().create();
                         Object obj = gson.fromJson(str, callback.mType);
                         sendSuccessCallBack(callback, obj);
-                        SunLog.d(TAG,"obj"+obj);
+                        SunLog.d(TAG,"obj: "+obj);
                     }
 
                 } catch (Exception e) {

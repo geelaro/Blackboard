@@ -1,9 +1,6 @@
 package com.geelaro.sunshine.main;
 
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,8 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
 
 import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.about.AboutFragment;
@@ -25,7 +20,6 @@ import com.geelaro.sunshine.news.NewsFragment;
 import com.geelaro.sunshine.utils.ShowToast;
 import com.geelaro.sunshine.weather.WeatherFragment;
 
-import static com.geelaro.sunshine.R.attr.theme;
 
 public class MainHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MainContract.View {

@@ -1,7 +1,10 @@
 package com.geelaro.sunshine.weather.model;
 
+import android.nfc.Tag;
+
 import com.geelaro.sunshine.beans.WeatherBean;
 import com.geelaro.sunshine.utils.OkHttpUtils;
+import com.geelaro.sunshine.utils.SunLog;
 import com.geelaro.sunshine.utils.ToolUtils;
 import com.geelaro.sunshine.utils.Urls;
 import com.geelaro.sunshine.utils.WeatherJsonUtils;
@@ -32,7 +35,8 @@ public class WeatherModel implements WeatherContract.Model {
             @Override
             public void onSuccess(String response) {
                 try {
-                    List<WeatherBean> list = WeatherJsonUtils.getWeatherInfo(response);
+                    List<WeatherBean> list = WeatherJsonUtils.getWeatherDataFromJson(response);
+                    SunLog.d("Response: ",response);
                     listener.onSuccess(list);
                 } catch (JSONException e) {
                     e.printStackTrace();

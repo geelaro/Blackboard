@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 
 import com.geelaro.sunshine.BuildConfig;
 import com.geelaro.sunshine.R;
+import com.geelaro.sunshine.utils.ToolUtils;
 import com.geelaro.sunshine.utils.Urls;
 
 import org.json.JSONArray;
@@ -172,7 +173,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
             // Possible parameters are avaiable at OWM's forecast API page, at
             // http://openweathermap.org/API#forecast
 
-            URL url = new URL(getWeatherURL().toString());
+            URL url = new URL(ToolUtils.getWeatherURL().toString());
             Log.d(LOG_TAG, "url: " + url);
 
             // Create the request to OpenWeatherMap, and open the connection
@@ -242,27 +243,5 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
         }
     }
 
-    private Uri getWeatherURL() {
-        String format = "json";
-        String units = "metric";
-        int numDays = 7;
-        String param = "Nanjing";
-
-        final String QUERY_PARAM = "q";
-        final String FORMAT_PARAM = "mode";
-        final String UNITS_PARAM = "units";
-        final String DAYS_PARAM = "cnt";
-        final String APPID_PARAM = "APPID";
-
-        Uri builtUri = Uri.parse(Urls.WEATHER_BASE_URL).buildUpon()
-                .appendQueryParameter(QUERY_PARAM, param)
-                .appendQueryParameter(FORMAT_PARAM, format)
-                .appendQueryParameter(UNITS_PARAM, units)
-                .appendQueryParameter(DAYS_PARAM, Integer.toString(numDays))
-                .appendQueryParameter(APPID_PARAM, BuildConfig.OPEN_WEATHER_API_KEY)
-                .build();
-
-        return builtUri;
-    }
 }
 
