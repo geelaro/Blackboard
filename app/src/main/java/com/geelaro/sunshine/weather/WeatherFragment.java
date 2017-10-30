@@ -34,6 +34,7 @@ public class WeatherFragment extends Fragment implements WeatherContract.Weather
     private final static String TAG = WeatherFragment.class.getSimpleName();
     private final static int ID_WEATHER_LOADER = 11;
     private WeatherAdapter mWeatherAdapter;
+    private RecyclerView recyclerView;
     private Context mContext;
     private List<WeatherBean> mData;
     private LinearLayoutManager manager;
@@ -65,7 +66,7 @@ public class WeatherFragment extends Fragment implements WeatherContract.Weather
         mWeatherAdapter = new WeatherAdapter(mContext);
         manager = new LinearLayoutManager(getActivity());
 
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.listview_weather);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.listview_weather);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(manager);

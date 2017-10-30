@@ -37,6 +37,7 @@ public class WeatherModel implements WeatherContract.Model {
                 try {
                     List<WeatherBean> list = WeatherJsonUtils.getWeatherDataFromJson(response);
                     SunLog.d("Response: ",response);
+
                     listener.onSuccess(list);
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -78,7 +78,6 @@ public class WeatherJsonUtils {
             // For now, using the format "Day, description, hi/low"
             String day;
             String weatherDesc;
-            String highAndLow;
             int weatherId;
 
             // Get the JSON object representing the day

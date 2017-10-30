@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.beans.WeatherBean;
-import com.geelaro.sunshine.images.ImageAdapter;
 import com.geelaro.sunshine.utils.SunLog;
 import com.geelaro.sunshine.utils.ToolUtils;
 
@@ -32,6 +31,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
 
     public void setData(List<WeatherBean> mData){
         this.mData = mData;
+        this.notifyDataSetChanged(); //数据发生改动时要重新get
     }
 
 
@@ -49,9 +49,10 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
             return;
         }
         holder.weatherImage.setImageResource(ToolUtils.getWeatherImage(weatherBean.getWeatherId()));
-        holder.tempText.setText(weatherBean.getMinTemp() + "  " + weatherBean.getMaxTemp());
+        holder.weatherDesc.setText(weatherBean.getDesc());
+        holder.lowTemp.setText(String.valueOf(weatherBean.getMinTemp()));
+        holder.highTemp.setText(String.valueOf(weatherBean.getMaxTemp()));
         holder.dateText.setText(weatherBean.getDate());
-        SunLog.d(TAG,holder.toString());
         SunLog.d(TAG, "getView");
     }
 
@@ -66,15 +67,19 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
-        private TextView tempText;
-        private TextView dateText;
         private ImageView weatherImage;
+        private TextView dateText;
+        private TextView weatherDesc;
+        private TextView highTemp;
+        private TextView lowTemp;
 
 
         public ItemViewHolder(View itemView) {
             super(itemView);
-            weatherImage = (ImageView) itemView.findViewById(R.id.weatherImage);
-            tempText = (TextView) itemView.findViewById(R.id.weatherTemp);
+            weatherImage = (ImageView) itemView.findViewById(R.id.weather_icon);
+            weatherDesc = (TextView) itemView.findViewById(R.id.weather_description);
+            highTemp = (TextView) itemView.findViewById(R.id.high_temperature);
+            lowTemp = (TextView) itemView.findViewById(R.id.low_temperature);
             dateText = (TextView) itemView.findViewById(R.id.date);
         }
     }
