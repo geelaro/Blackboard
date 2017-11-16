@@ -1,6 +1,12 @@
 ### SunshinePro
 一个聚合类App。
 
+### Screenshot
+###### 天气
+![image](https://raw.githubusercontent.com/geelaro/SunshinePro/develop/screenshot/weather.png)
+###### 侧滑菜单
+![image](https://raw.githubusercontent.com/geelaro/SunshinePro/develop/screenshot/nav.png)
+
 ### License (MIT)
 
 ```
