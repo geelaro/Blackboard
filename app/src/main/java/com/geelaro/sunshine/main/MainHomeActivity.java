@@ -1,5 +1,6 @@
 package com.geelaro.sunshine.main;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.about.AboutFragment;
@@ -49,6 +51,8 @@ public class MainHomeActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        ImageView imageView = (ImageView)findViewById(R.id.imageView);
 
         mainPresenter = new MainPresenter(this);
 

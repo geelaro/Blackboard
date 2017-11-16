@@ -24,12 +24,12 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
     private List<WeatherBean> mData;
     private Context mContext;
 
-    public WeatherAdapter( Context context) {
+    public WeatherAdapter(Context context) {
         this.mContext = context;
         SunLog.d(TAG, "WeatherAdapter Init.");
     }
 
-    public void setData(List<WeatherBean> mData){
+    public void setData(List<WeatherBean> mData) {
         this.mData = mData;
         this.notifyDataSetChanged(); //数据发生改动时要重新get
     }

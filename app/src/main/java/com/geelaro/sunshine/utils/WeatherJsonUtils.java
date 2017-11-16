@@ -50,7 +50,7 @@ public class WeatherJsonUtils {
         final String OWM_MAX = "max";
         final String OWM_MIN = "min";
         final String OWM_DESCRIPTION = "main";
-        final String OWM_ID="id";
+        final String OWM_ID = "id";
 
         JSONObject forecastJson = new JSONObject(forecastJsonStr);
         JSONArray weatherArray = forecastJson.getJSONArray(OWM_LIST);
@@ -108,7 +108,7 @@ public class WeatherJsonUtils {
             weather.setMinTemp(low);
             weather.setDate(day);
             weather.setWeatherId(weatherId);
-            ShowToast.Short(weatherDesc+day+weatherId);
+            ShowToast.Short(weatherDesc + day + weatherId);
             weatherBeanList.add(weather);
 
         }

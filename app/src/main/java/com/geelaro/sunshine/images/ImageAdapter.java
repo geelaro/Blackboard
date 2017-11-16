@@ -32,6 +32,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHold
 
     /**
      * 传递数据
+     *
      * @param mData
      */
     public void setData(List<ImageBean> mData) {
@@ -45,7 +46,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHold
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_image, parent, false);
         ItemViewHolder viewHolder = new ItemViewHolder(view);
-        SunLog.d(TAG,"onCreateViewHolder");
+        SunLog.d(TAG, "onCreateViewHolder");
 
         return viewHolder;
     }

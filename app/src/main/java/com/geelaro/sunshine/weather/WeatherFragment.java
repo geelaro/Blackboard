@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,7 +30,7 @@ import java.util.List;
  * Created by geelaro on 2017/6/19.
  */
 
-public class WeatherFragment extends Fragment implements WeatherContract.WeatherView {
+public class WeatherFragment extends Fragment implements WeatherContract.WeatherView,SwipeRefreshLayout.OnRefreshListener {
 
     private final static String TAG = WeatherFragment.class.getSimpleName();
     private final static int ID_WEATHER_LOADER = 11;
@@ -39,7 +40,6 @@ public class WeatherFragment extends Fragment implements WeatherContract.Weather
     private List<WeatherBean> mData;
     private LinearLayoutManager manager;
     private WeatherPresenter mPresenter;
-
 
 
     public WeatherFragment() {
@@ -52,7 +52,7 @@ public class WeatherFragment extends Fragment implements WeatherContract.Weather
         setHasOptionsMenu(true); //重写菜单生效
         mContext = SunshineApp.getContext();
         mPresenter = new WeatherPresenter(this);
-        SunLog.d(TAG,"onCreate");
+        SunLog.d(TAG, "onCreate");
 //        getLoaderManager().initLoader(ID_WEATHER_LOADER,null,this);
 
     }
@@ -73,9 +73,8 @@ public class WeatherFragment extends Fragment implements WeatherContract.Weather
         recyclerView.setAdapter(mWeatherAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        SunLog.d(TAG,"onCreateView");
-
-        mPresenter.loadWeatherList();
+        SunLog.d(TAG, "onCreateView");
+        onRefresh();
         return rootView;
     }
 
@@ -89,7 +88,7 @@ public class WeatherFragment extends Fragment implements WeatherContract.Weather
     @Override
     public void onStart() {
         super.onStart();
-        SunLog.d(TAG,"onStart");
+        SunLog.d(TAG, "onStart");
     }
 
     @Override
@@ -106,6 +105,11 @@ public class WeatherFragment extends Fragment implements WeatherContract.Weather
     public void showError() {
 
         ShowToast.Short("数据加载错误。");
+    }
+
+    @Override
+    public void onRefresh() {
+        mPresenter.loadWeatherList();
     }
 
 //    @Override

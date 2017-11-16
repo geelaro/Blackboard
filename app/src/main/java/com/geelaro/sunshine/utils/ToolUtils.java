@@ -106,25 +106,32 @@ public class ToolUtils {
      */
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        NetworkInfo networkInfo = null;
+        if (connectivityManager != null) {
+            networkInfo = connectivityManager.getActiveNetworkInfo();
+        }
 
-        return networkInfo.isAvailable();
+        if (networkInfo != null) {
+            return networkInfo.isAvailable();
+        }
+        return false;
     }
+
     /**
      * 获取当前设备屏幕宽度in pixel
      */
-    public static int getWidthInPx(Context context){
+    public static int getWidthInPx(Context context) {
         int width = context.getResources().getDisplayMetrics().widthPixels;
         return width;
     }
 
-    public static int getHeightInPx(Context context){
+    public static int getHeightInPx(Context context) {
         int height = context.getResources().getDisplayMetrics().heightPixels;
         return height;
     }
 
-    public static float getWidth(Context context){
-        float density =  context.getResources().getDisplayMetrics().density;
+    public static float getWidth(Context context) {
+        float density = context.getResources().getDisplayMetrics().density;
         return density;
     }
 
@@ -152,7 +159,7 @@ public class ToolUtils {
         return builtUri;
     }
 
-    public static int getWeatherImage(int weatherId){
+    public static int getWeatherImage(int weatherId) {
         if (weatherId >= 200 && weatherId <= 232) {
             return R.drawable.ic_storm;
         } else if (weatherId >= 300 && weatherId <= 321) {
@@ -186,8 +193,6 @@ public class ToolUtils {
         SunLog.e("getWeatherImage", "Unknown Weather: " + weatherId);
         return R.drawable.ic_storm;
     }
-
-
 
 
 }

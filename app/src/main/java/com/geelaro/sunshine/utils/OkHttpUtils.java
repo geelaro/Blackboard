@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.internal.$Gson$Types;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -17,6 +18,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
+import okhttp3.Cache;
+import okhttp3.CacheControl;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -38,12 +41,19 @@ public class OkHttpUtils {
     private OkHttpClient mOkHttpClient;
 
     private Handler mDelivery;
+    private static final int CACHE_SIZE =1024 * 1024 * 10; //cache size is 10Mb
+
 
     private OkHttpUtils() {
+        File cacheFile =
+                new File(SunshineApp.getContext().getExternalCacheDir(),"cache");
+        Cache cache = new Cache(cacheFile, CACHE_SIZE); //10Mb
+
         mOkHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
+                .cache(cache) //设置cache
                 .build();
 
         mDelivery = new Handler(Looper.getMainLooper());
@@ -59,8 +69,17 @@ public class OkHttpUtils {
 
     //GET
     private void getRequest(String url, final ResultCallback callback) {
-
-        Request request = new Request.Builder().url(url).build();
+        Request request;
+        //设置缓存时间为10m
+        CacheControl cacheControl  = new CacheControl.Builder()
+                .maxAge(60,TimeUnit.SECONDS)
+                .build();
+        if (!ToolUtils.isNetworkAvailable(SunshineApp.getContext())){
+            request = new Request.Builder().url(url).cacheControl(CacheControl.FORCE_CACHE).build();
+        }
+        else {
+            request = new Request.Builder().url(url).cacheControl(cacheControl).build();
+        }
         deliveryResult(callback, request);
 
     }
@@ -90,15 +109,17 @@ public class OkHttpUtils {
             public void onResponse(Call call, Response response) {
                 try {
                     String str = response.body().string();
+                    SunLog.d(TAG,"response cache:"+response.cacheResponse());
+                    SunLog.d(TAG,"response networkResponse："+response.networkResponse());
 
                     if (callback.mType == String.class) {
                         sendSuccessCallBack(callback, str);
-                        SunLog.d(TAG,"str: "+str);
+                        SunLog.d(TAG, "str: " + str);
                     } else {
                         Gson gson = new GsonBuilder().create();
                         Object obj = gson.fromJson(str, callback.mType);
                         sendSuccessCallBack(callback, obj);
-                        SunLog.d(TAG,"obj: "+obj);
+                        SunLog.d(TAG, "obj: " + obj);
                     }
 
                 } catch (Exception e) {
@@ -115,6 +136,7 @@ public class OkHttpUtils {
             public void run() {
                 if (callback != null) {
                     callback.onFailure(e);
+                    ShowToast.Short("数据加载失败！");
                 }
             }
         });

@@ -63,7 +63,7 @@ public class ImageFragment extends Fragment implements ImageView {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         mImagePresenter.loadImageList();
-        SunLog.d(TAG,"Fragment:onCreateView");
+        SunLog.d(TAG, "Fragment:onCreateView");
 
         return rootView;
     }
@@ -76,6 +76,6 @@ public class ImageFragment extends Fragment implements ImageView {
         mData.clear();
         mData.addAll(list);
         mImageAdapter.setData(mData);
-        SunLog.d(TAG,": addImageData");
+        SunLog.d(TAG, ": addImageData");
     }
 }
