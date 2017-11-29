@@ -24,8 +24,14 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
     private List<WeatherBean> mData;
     private Context mContext;
 
+    private final static int VIEW_TYPE_TODAY = 0;
+    private final static int VIEW_TYPE_FUTURE_DAY = 1;
+
+    private boolean mUseTodayLayout;
+
     public WeatherAdapter(Context context) {
         this.mContext = context;
+        mUseTodayLayout = mContext.getResources().getBoolean(R.bool.use_today_layout);
         SunLog.d(TAG, "WeatherAdapter Init.");
     }
 
@@ -37,7 +43,19 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.list_item_weather, parent, false);
+        int layoutId;
+        switch (viewType){
+            case VIEW_TYPE_TODAY:
+                layoutId = R.layout.list_item_weather_today;
+                break;
+            case VIEW_TYPE_FUTURE_DAY:
+                layoutId = R.layout.list_item_weather;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid view type, value of " + viewType);
+        }
+
+        View view = LayoutInflater.from(mContext).inflate(layoutId, parent, false);
         WeatherAdapter.ItemViewHolder viewHolder = new ItemViewHolder(view);
         return viewHolder;
     }
@@ -48,11 +66,26 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
         if (weatherBean == null) {
             return;
         }
-        holder.weatherImage.setImageResource(ToolUtils.getWeatherImage(weatherBean.getWeatherId()));
-        holder.weatherDesc.setText(weatherBean.getDesc());
-        holder.lowTemp.setText(String.valueOf(weatherBean.getMinTemp()));
-        holder.highTemp.setText(String.valueOf(weatherBean.getMaxTemp()));
-        holder.dateText.setText(weatherBean.getDate());
+        int weatherId = weatherBean.getWeatherId();
+        int weatherImageId;
+        int viewType = getItemViewType(position);
+
+        switch (viewType){
+            case VIEW_TYPE_TODAY:
+                weatherImageId = ToolUtils.getBigWeatherImage(weatherId);
+                break;
+            case VIEW_TYPE_FUTURE_DAY:
+                weatherImageId = ToolUtils.getSmallWeatherImage(weatherId);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid view type, value of " + viewType);
+        }
+
+        holder.weatherImage.setImageResource(weatherImageId); //Weather Icon
+        holder.weatherDesc.setText(weatherBean.getDesc()); //Weather Description
+        holder.lowTemp.setText(String.valueOf(weatherBean.getMinTemp())); //Low temperature
+        holder.highTemp.setText(String.valueOf(weatherBean.getMaxTemp()));//High temperature
+        holder.dateText.setText(weatherBean.getDate());//date
         SunLog.d(TAG, "getView");
     }
 
@@ -64,6 +97,16 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
     @Override
     public int getItemCount() {
         return mData != null ? mData.size() : 0;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (mUseTodayLayout&&position==0){
+            return VIEW_TYPE_TODAY;
+        } else {
+            return VIEW_TYPE_FUTURE_DAY;
+        }
+
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
