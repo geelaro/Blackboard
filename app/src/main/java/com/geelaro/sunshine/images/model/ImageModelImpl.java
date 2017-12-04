@@ -27,7 +27,7 @@ public class ImageModelImpl implements ImageModel {
      */
     @Override
     public void loadImageList(final OnLoadImageListListener listener) {
-        OkHttpUtils.ResultCallback<String> loadNewsCallBack = new OkHttpUtils.ResultCallback<String>() {
+        OkHttpUtils.ResultCallback<String> loadImageCallBack = new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onFailure(Exception e) {
                 listener.onFailure("Fail to load image list.", e);
@@ -40,7 +40,7 @@ public class ImageModelImpl implements ImageModel {
             }
         };
 
-        OkHttpUtils.get(Urls.IMAGE_URL, loadNewsCallBack);
+        OkHttpUtils.get(Urls.IMAGE_URL, loadImageCallBack);
 
 
     }
