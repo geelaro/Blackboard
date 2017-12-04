@@ -1,6 +1,11 @@
 package com.geelaro.sunshine.news.model;
 
 import com.geelaro.sunshine.beans.NewsBean;
+import com.geelaro.sunshine.news.NewsFragmentManager;
+import com.geelaro.sunshine.utils.JsonUtils;
+import com.geelaro.sunshine.utils.NewsJsonUtils;
+import com.geelaro.sunshine.utils.OkHttpUtils;
+import com.geelaro.sunshine.utils.Urls;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,16 +17,44 @@ import java.util.List;
 public class NewsModelImpl implements NewsModel {
 
     @Override
-    public void loadNewsList(OnLoadNewsListener listener) {
-        List<NewsBean> list = new ArrayList<>();
-        NewsBean newsBean = new NewsBean();
-        newsBean.setImgsrc("http://cms-bucket.nosdn.127.net/05a02f177d794158a27174cbf44d247c20171104132521.jpeg");
-        newsBean.setNewsTitle("俄'人民团结日' 普京前往红场献花");
-        newsBean.setNewsText("新华社北京11月5日电题：积极探索实践形成宝贵经验国家监察体制改革试点取得实效");
+    public void loadNewsList(final int type,String url,final OnLoadNewsListener listener) {
 
-        list.add(newsBean);
 
-        listener.onSuccess(list);
+        OkHttpUtils.ResultCallback<String> loadNewsCallBack = new OkHttpUtils.ResultCallback<String>() {
+            @Override
+            public void onFailure(Exception e) {
+                listener.onFailure("Fail to load News.",e);
+            }
+
+            @Override
+            public void onSuccess(String response) {
+                List<NewsBean> newsBeanList = NewsJsonUtils.getNewsBean(response, Urls.TOP_ID);
+                listener.onSuccess(newsBeanList);
+            }
+        };
+
+        OkHttpUtils.get(url,loadNewsCallBack);
     }
+
+    private String getId(int type){
+        String id = null;
+        switch (type){
+            case NewsFragmentManager.NEWS_TYPE_TOP:
+                id = Urls.TOP_ID;
+                break;
+            case NewsFragmentManager.NEWS_TYPE_NBA:
+                break;
+            case NewsFragmentManager.NEWS_TYPE_CARS:
+                break;
+            case NewsFragmentManager.NEWS_TYPE_JOKES:
+                break;
+            default:
+                id = Urls.TOP_ID;
+                break;
+        }
+        return id;
+    }
+
+
 
 }

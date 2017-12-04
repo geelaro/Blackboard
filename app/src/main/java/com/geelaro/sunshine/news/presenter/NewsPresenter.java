@@ -5,5 +5,5 @@ package com.geelaro.sunshine.news.presenter;
  */
 
 public interface NewsPresenter {
-    void loadNewsList();
+    void loadNewsList(int type);
 }

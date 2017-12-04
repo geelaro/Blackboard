@@ -10,6 +10,8 @@
         android:id="@+id/newsImage"
         android:layout_width="86dp"
         android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +35,7 @@
         tools:text="@string/app_description" />
 
     <TextView
-        android:id="@+id/newsText"
+        android:id="@+id/newsDigest"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -46,11 +48,11 @@
         tools:text="新华社北京11月5日电题：积极探索实践形成宝贵经验国家监察体制改革试点取得实效" />
 
 
-    <!--<android.support.constraint.Guideline-->
-        <!--android:id="@+id/newsGuideline"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal"-->
-        <!--app:layout_constraintGuide_percent="0.5"/>-->
+    <android.support.constraint.Guideline
+        android:id="@+id/newsGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1.0"/>
 
 </android.support.constraint.ConstraintLayout>

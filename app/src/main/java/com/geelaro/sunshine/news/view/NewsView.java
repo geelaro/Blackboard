@@ -10,4 +10,7 @@ import java.util.List;
 
 public interface NewsView {
     void addNewsData(List<NewsBean> list);
+    void showProgress();
+    void hideProgress();
+
 }

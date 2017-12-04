@@ -5,6 +5,6 @@ package com.geelaro.sunshine.news.model;
  */
 
 public interface NewsModel {
-    void loadNewsList(OnLoadNewsListener listener);
+    void loadNewsList(int type,String url,OnLoadNewsListener listener);
 
 }

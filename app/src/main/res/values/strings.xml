@@ -15,6 +15,12 @@
     <string name="fragment_images">图片</string>
     <string name="fragment_me">关于我</string>
 
+    <!-- News titles -->
+    <string name="news_top">头条</string>
+    <string name="news_nba">NBA</string>
+    <string name="news_cars">汽车</string>
+    <string name="news_jokes">笑话</string>
+
     <!--Units setting-->
     <string name="pref_units_key">units</string>
     <string name="pref_units_imperial">imperial</string>

@@ -19,6 +19,7 @@ import com.geelaro.sunshine.images.ImageFragment;
 import com.geelaro.sunshine.main.contract.MainContract;
 import com.geelaro.sunshine.main.presenter.MainPresenter;
 import com.geelaro.sunshine.news.NewsFragment;
+import com.geelaro.sunshine.news.NewsFragmentManager;
 import com.geelaro.sunshine.utils.ShowToast;
 import com.geelaro.sunshine.weather.WeatherFragment;
 
@@ -52,11 +53,10 @@ public class MainHomeActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ImageView imageView = (ImageView)findViewById(R.id.imageView);
-
         mainPresenter = new MainPresenter(this);
 
         switch2Weather();//首次进入程序是WeatherFragment
+//        switch2News();
     }
 
     @Override
@@ -122,7 +122,7 @@ public class MainHomeActivity extends AppCompatActivity
         // Handle the WeatherFragment action
 
         //getSupportFragmentManager() v4.fragment使用此方法
-        getFragmentManager().beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new WeatherFragment())
                 .commit();
         toolbar.setTitle(R.string.fragment_weather);
@@ -130,8 +130,8 @@ public class MainHomeActivity extends AppCompatActivity
 
     @Override
     public void switch2News() {
-        getFragmentManager().beginTransaction()
-                .replace(R.id.container, new NewsFragment())
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, new NewsFragmentManager())
                 .commit();
         toolbar.setTitle(R.string.fragment_news);
 
@@ -139,7 +139,7 @@ public class MainHomeActivity extends AppCompatActivity
 
     @Override
     public void switch2Images() {
-        getFragmentManager().beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new ImageFragment())
                 .commit();
         toolbar.setTitle(R.string.fragment_images);
@@ -147,7 +147,7 @@ public class MainHomeActivity extends AppCompatActivity
 
     @Override
     public void switch2About() {
-        getFragmentManager().beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new AboutFragment())
                 .commit();
         toolbar.setTitle(R.string.fragment_me);

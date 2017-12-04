@@ -50,8 +50,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemViewHolder
             return;
         }
         ImageGlide.display(mContext,newsBean.getImgsrc(),  holder.newsImage);
-        holder.newsTitle.setText(newsBean.getNewsTitle());
-        holder.newsText.setText(newsBean.getNewsText());
+        holder.newsTitle.setText(newsBean.getTitle());
+        holder.newsDigest.setText(newsBean.getDigest());
         SunLog.d(TAG,"onBindViewHolder");
 
     }
@@ -64,13 +64,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemViewHolder
     public class ItemViewHolder extends RecyclerView.ViewHolder {
          private ImageView newsImage;
          private TextView newsTitle;
-         private TextView newsText;
+         private TextView newsDigest;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             newsImage = (ImageView) itemView.findViewById(R.id.newsImage);
             newsTitle = (TextView) itemView.findViewById(R.id.newsTitle); //新闻标题
-            newsText = (TextView) itemView.findViewById(R.id.newsText); //新闻简略正文
+            newsDigest = (TextView) itemView.findViewById(R.id.newsDigest); //新闻摘要
         }
     }
 }

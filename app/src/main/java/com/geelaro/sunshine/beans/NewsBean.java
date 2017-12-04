@@ -6,30 +6,30 @@ package com.geelaro.sunshine.beans;
 
 public class NewsBean {
     private String imgsrc;
-    private String newsTitle;
-    private String newsText;
+    private String title;
+    private String digest;
 
     public String getImgsrc() {
         return imgsrc;
     }
 
-    public String getNewsText() {
-        return newsText;
+    public String getTitle() {
+        return title;
     }
 
-    public String getNewsTitle() {
-        return newsTitle;
+    public String getDigest() {
+        return digest;
     }
 
     public void setImgsrc(String imgsrc) {
         this.imgsrc = imgsrc;
     }
 
-    public void setNewsText(String newsText) {
-        this.newsText = newsText;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setNewsTitle(String newsTitle) {
-        this.newsTitle = newsTitle;
+    public void setDigest(String digest) {
+        this.digest = digest;
     }
 }
