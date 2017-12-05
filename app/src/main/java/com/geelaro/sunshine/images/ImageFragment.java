@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,13 +29,14 @@ import java.util.List;
  * Created by geelaro on 2017/10/12.
  */
 
-public class ImageFragment extends Fragment implements ImageView {
+public class ImageFragment extends Fragment implements ImageView,SwipeRefreshLayout.OnRefreshListener{
     private final static String TAG = ImageFragment.class.getSimpleName();
     private ImageAdapter mImageAdapter;
     private List<ImageBean> mData;
     private RecyclerView recyclerView;
     private LinearLayoutManager manager;
     private ImagePresenter mImagePresenter;
+    private SwipeRefreshLayout mRefreshLayout;
 
     public ImageFragment() {
         super();
@@ -54,6 +56,10 @@ public class ImageFragment extends Fragment implements ImageView {
         mImageAdapter = new ImageAdapter(SunshineApp.getContext());
 
         manager = new LinearLayoutManager(getActivity());
+        // SwipeRefreshLayout
+        mRefreshLayout = (SwipeRefreshLayout)rootView.findViewById(R.id.image_refresh);
+        mRefreshLayout.setColorSchemeResources(R.color.color_nav_center);
+        mRefreshLayout.setOnRefreshListener(this);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycleView_image);
 
@@ -62,8 +68,8 @@ public class ImageFragment extends Fragment implements ImageView {
         recyclerView.setAdapter(mImageAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        mImagePresenter.loadImageList();
         SunLog.d(TAG, "Fragment:onCreateView");
+        onRefresh();
 
         return rootView;
     }
@@ -78,4 +84,24 @@ public class ImageFragment extends Fragment implements ImageView {
         mImageAdapter.setData(mData);
         SunLog.d(TAG, ": addImageData");
     }
+
+    @Override
+    public void showProgress() {
+        mRefreshLayout.setRefreshing(true);
+    }
+
+    @Override
+    public void hideProgress() {
+        mRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void showErrorMsg(String msg) {
+        //TODO
+    }
+
+    @Override
+    public void onRefresh() {
+            mImagePresenter.loadImageList();
+        }
 }

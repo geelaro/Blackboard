@@ -10,4 +10,7 @@ import java.util.List;
 
 public interface ImageView {
     void addImageData(List<ImageBean> list);
+    void showProgress();
+    void hideProgress();
+    void showErrorMsg(String msg);
 }
