@@ -15,7 +15,7 @@ public class SunLog {
     public static final int ERROR = 5;
     public static final int NOTHING = 6;
     //设置打印日志level
-    public static final int LEVEL = DEBUG;
+    public static final int LEVEL = WARN;
 
     public static void v(String tag, String msg) {
         if (LEVEL <= VERBOSE) {

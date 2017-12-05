@@ -4,10 +4,28 @@
 ### Screenshot
 ###### 天气
 ![image](https://raw.githubusercontent.com/geelaro/SunshinePro/develop/screenshot/weather.png)
+###### 新闻
+![image](https://raw.githubusercontent.com/geelaro/SunshinePro/develop/screenshot/news.png)
+###### 图片
+![image](https://raw.githubusercontent.com/geelaro/SunshinePro/develop/screenshot/images.png)
 ###### 侧滑菜单
 ![image](https://raw.githubusercontent.com/geelaro/SunshinePro/develop/screenshot/nav.png)
 
-### License (MIT)
+## 数据源
+- 天气数据使用 [OpenWeatherMap](http://openweathermap.org/).
+- 新闻数据来源于网易新闻.
+
+## 依赖库
+- [Glide](https://github.com/bumptech/glide)
+- [OkHttp](https://github.com/square/okhttp)
+- [Gson](https://github.com/google/gson)
+- [PagerSlidingTabStrip](https://github.com/astuetz/PagerSlidingTabStrip)
+
+## About Me
+- Blog: [geelaro](http://geelaro.github.com)
+- Email: [Gmail](mailto:geelaro.li@gmail.com)
+
+## License (MIT)
 
 ```
 Copyright (c) 2017 geelaro
