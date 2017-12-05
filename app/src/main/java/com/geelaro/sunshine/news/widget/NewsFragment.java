@@ -1,6 +1,7 @@
-package com.geelaro.sunshine.news;
+package com.geelaro.sunshine.news.widget;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,9 +15,11 @@ import android.view.ViewGroup;
 
 import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.beans.NewsBean;
+import com.geelaro.sunshine.news.NewsAdapter;
 import com.geelaro.sunshine.news.presenter.NewsPresenter;
 import com.geelaro.sunshine.news.presenter.NewsPresenterImpl;
 import com.geelaro.sunshine.news.view.NewsView;
+import com.geelaro.sunshine.utils.ShowToast;
 import com.geelaro.sunshine.utils.SunshineApp;
 
 import java.util.ArrayList;
@@ -61,10 +64,11 @@ public class NewsFragment extends Fragment implements NewsView,SwipeRefreshLayou
 
         mRefreshLayout = (SwipeRefreshLayout) newsView.findViewById(R.id.news_refresh);
         /**设置刷新时旋转图标的颜色，这是一个可变参数，当设置多个颜色时，旋转一周改变一次颜色 */
-        mRefreshLayout.setColorSchemeResources(R.color.color_nav_center,R.color.color_nav_end);
+        mRefreshLayout.setColorSchemeResources(R.color.color_nav_end);
         mRefreshLayout.setOnRefreshListener(this);
 
         mNewsAdapter = new NewsAdapter(SunshineApp.getContext());
+        mNewsAdapter.setOnItemClickListener(itemClickListener);
         manager = new LinearLayoutManager(getActivity());
         recyclerView = (RecyclerView)newsView.findViewById(R.id.recycleView_news);
 
@@ -87,8 +91,21 @@ public class NewsFragment extends Fragment implements NewsView,SwipeRefreshLayou
         mData.clear();//clear data
         mNewsAdapter.setData(mData);
         mData.addAll(list);
-
     }
+
+    private NewsAdapter.OnItemClickListener itemClickListener = new NewsAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(View v, int position) {
+            if (mData.size()<=0){
+                return;
+            }
+            NewsBean news = mData.get(position);
+            Intent intent = new Intent(getActivity(),NewsDetailActivity.class);
+            intent.putExtra("news",news);
+
+            startActivity(intent);
+        }
+    };
 
     @Override
     public void showProgress() {
@@ -98,6 +115,11 @@ public class NewsFragment extends Fragment implements NewsView,SwipeRefreshLayou
     @Override
     public void hideProgress() {
         mRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void showErrorMsg(String msg) {
+            ShowToast.Short(msg);
     }
 
     @Override

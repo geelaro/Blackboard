@@ -22,14 +22,11 @@ import java.util.List;
 
 public class WeatherJsonUtils {
 
+    private static String cityName;
 
-    public static String getCity(String jsonStr) {
+    public static String getCityName() {
 
-        JsonObject jsonObj = new JsonParser().parse(jsonStr).getAsJsonObject();
-        JsonElement cityElement = jsonObj.get("city");
-
-
-        return cityElement.getAsString();
+        return cityName;
     }
 
     public static List<WeatherBean> getWeatherInfo(String jsonStr) throws JSONException {
@@ -108,7 +105,6 @@ public class WeatherJsonUtils {
             weather.setMinTemp(low);
             weather.setDate(day);
             weather.setWeatherId(weatherId);
-            ShowToast.Short(weatherDesc + day + weatherId);
             weatherBeanList.add(weather);
 
         }

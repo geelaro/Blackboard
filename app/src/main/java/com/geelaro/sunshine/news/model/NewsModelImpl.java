@@ -1,13 +1,11 @@
 package com.geelaro.sunshine.news.model;
 
 import com.geelaro.sunshine.beans.NewsBean;
-import com.geelaro.sunshine.news.NewsFragmentManager;
-import com.geelaro.sunshine.utils.JsonUtils;
+import com.geelaro.sunshine.news.widget.NewsFragmentManager;
 import com.geelaro.sunshine.utils.NewsJsonUtils;
 import com.geelaro.sunshine.utils.OkHttpUtils;
 import com.geelaro.sunshine.utils.Urls;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,7 +26,7 @@ public class NewsModelImpl implements NewsModel {
 
             @Override
             public void onSuccess(String response) {
-                List<NewsBean> newsBeanList = NewsJsonUtils.getNewsBean(response, Urls.TOP_ID);
+                List<NewsBean> newsBeanList = NewsJsonUtils.getNewsBean(response, getId(type));
                 listener.onSuccess(newsBeanList);
             }
         };
@@ -37,16 +35,19 @@ public class NewsModelImpl implements NewsModel {
     }
 
     private String getId(int type){
-        String id = null;
+        String id ;
         switch (type){
             case NewsFragmentManager.NEWS_TYPE_TOP:
                 id = Urls.TOP_ID;
                 break;
             case NewsFragmentManager.NEWS_TYPE_NBA:
+                id = Urls.NBA_ID;
                 break;
             case NewsFragmentManager.NEWS_TYPE_CARS:
+                id = Urls.CAR_ID;
                 break;
             case NewsFragmentManager.NEWS_TYPE_JOKES:
+                id = Urls.JOKE_ID;
                 break;
             default:
                 id = Urls.TOP_ID;

@@ -5,10 +5,13 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="colorBlue">#05a3c6</color>
+    <color name="colorWhite">#FFFFFF</color>
 
     <color name="color_nav_start">#81C784</color>
     <color name="color_nav_center">#4caf50</color>
     <color name="color_nav_end">#2E7D32</color>
+
+    <color name="colorToolbar">#4caf50</color>
 
     <color name="colorToolBar">#393A3E</color>
     <color name="colorBlack">#000000</color>>
@@ -16,6 +19,6 @@
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#727272</color>
 
-    <color name="dff">#45c01a</color>
+    <color name="ColorRed">#d43d3d</color>
 
 </resources>

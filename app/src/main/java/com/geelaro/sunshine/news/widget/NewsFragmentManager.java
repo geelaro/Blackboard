@@ -1,4 +1,4 @@
-package com.geelaro.sunshine.news;
+package com.geelaro.sunshine.news.widget;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,11 +14,10 @@ import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.geelaro.sunshine.R;
+import com.geelaro.sunshine.news.widget.NewsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.geelaro.sunshine.R.color.color_nav_end;
 
 /**
  * Created by geelaro on 2017/12/2.
@@ -68,18 +67,18 @@ public class NewsFragmentManager extends Fragment {
      */
     private void setTabsValue() {
         // 设置Tab是自动填充满屏幕的
-        mPageTabs.setShouldExpand(true);
+//        mPageTabs.setShouldExpand(true);
         // 设置Tab的分割线是透明的
-        mPageTabs.setDividerColor(Color.TRANSPARENT);
+//        mPageTabs.setDividerColor(Color.TRANSPARENT);
         // 设置Tab底部线的高度
         mPageTabs.setUnderlineHeight((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 1, dm));
         // 设置Tab Indicator的高度
         mPageTabs.setIndicatorHeight((int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 4, dm));
+                TypedValue.COMPLEX_UNIT_DIP, 2, dm));
         // 设置Tab标题文字的大小
         mPageTabs.setTextSize((int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_SP, 16, dm));
+                TypedValue.COMPLEX_UNIT_SP, 14, dm));
         // 设置Tab Indicator的颜色
         mPageTabs.setIndicatorColor(Color.parseColor("#4caf50"));
         // 取消点击Tab时的背景色

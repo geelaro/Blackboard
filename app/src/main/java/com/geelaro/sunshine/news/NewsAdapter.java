@@ -26,6 +26,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemViewHolder
     private static final String TAG = NewsAdapter.class.getSimpleName();
     private List<NewsBean> mData;
     private Context mContext;
+    private OnItemClickListener mOnItemClickListener;
 
      public  NewsAdapter(Context context) {
         this.mContext = context;
@@ -61,7 +62,16 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemViewHolder
         return mData != null ? mData.size() : 0;
     }
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder {
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mOnItemClickListener = listener;
+    }
+
+    //interface
+    public interface OnItemClickListener{
+        void onItemClick(View v,int position);
+    }
+
+    public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
          private ImageView newsImage;
          private TextView newsTitle;
          private TextView newsDigest;
@@ -71,6 +81,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemViewHolder
             newsImage = (ImageView) itemView.findViewById(R.id.newsImage);
             newsTitle = (TextView) itemView.findViewById(R.id.newsTitle); //新闻标题
             newsDigest = (TextView) itemView.findViewById(R.id.newsDigest); //新闻摘要
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (mOnItemClickListener!=null){
+                mOnItemClickListener.onItemClick(v,this.getPosition());
+            }
         }
     }
 }

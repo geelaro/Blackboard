@@ -1,6 +1,5 @@
 package com.geelaro.sunshine.main;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,15 +10,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
 import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.about.AboutFragment;
 import com.geelaro.sunshine.images.ImageFragment;
 import com.geelaro.sunshine.main.contract.MainContract;
 import com.geelaro.sunshine.main.presenter.MainPresenter;
-import com.geelaro.sunshine.news.NewsFragment;
-import com.geelaro.sunshine.news.NewsFragmentManager;
+import com.geelaro.sunshine.news.widget.NewsFragmentManager;
 import com.geelaro.sunshine.utils.ShowToast;
 import com.geelaro.sunshine.weather.WeatherFragment;
 

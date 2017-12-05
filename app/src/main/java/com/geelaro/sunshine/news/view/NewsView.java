@@ -12,5 +12,6 @@ public interface NewsView {
     void addNewsData(List<NewsBean> list);
     void showProgress();
     void hideProgress();
+    void showErrorMsg(String msg);
 
 }

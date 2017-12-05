@@ -86,7 +86,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
         holder.lowTemp.setText(String.valueOf(weatherBean.getMinTemp())); //Low temperature
         holder.highTemp.setText(String.valueOf(weatherBean.getMaxTemp()));//High temperature
         holder.dateText.setText(weatherBean.getDate());//date
-        SunLog.d(TAG, "getView");
+        SunLog.d(TAG, "BindView");
     }
 
     @Override
