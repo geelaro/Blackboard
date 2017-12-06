@@ -12,6 +12,9 @@
     <dimen name="weather_detail_horizontal_padding">32dp</dimen>
     <dimen name="weather_detail_vertical_padding">16dp</dimen>
 
+    <!-- ToolBar size -->
+    <dimen name="toolbar_size">48dp</dimen>
+
     <!-- Icon Sizes -->
     <dimen name="today_icon">96dp</dimen>
     <dimen name="list_icon">40dp</dimen>
@@ -39,4 +42,7 @@
     <dimen name="list_item_low_temperature_text_view_size">48dp</dimen>
     <dimen name="list_item_date_left_margin">16dp</dimen>
     <dimen name="list_item_date_start_margin">@dimen/list_item_date_left_margin</dimen>
-</resources>
+
+    <!-- Image Fragment -->
+    <dimen name="image_horizontal_margin">8dp</dimen>
+    <dimen name="image_vertical_margin">8dp</dimen></resources>

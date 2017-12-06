@@ -121,18 +121,40 @@ public class ToolUtils {
      * 获取当前设备屏幕宽度in pixel
      */
     public static int getWidthInPx(Context context) {
-        int width = context.getResources().getDisplayMetrics().widthPixels;
+        final int width = context.getResources().getDisplayMetrics().widthPixels;
+        SunLog.d("WidthInPx",":"+width);
         return width;
     }
 
     public static int getHeightInPx(Context context) {
-        int height = context.getResources().getDisplayMetrics().heightPixels;
+        final int height = context.getResources().getDisplayMetrics().heightPixels;
+        SunLog.d("HeightInPx",":"+height);
+
         return height;
     }
 
-    public static float getWidth(Context context) {
-        float density = context.getResources().getDisplayMetrics().density;
-        return density;
+    public static float getWidthInDp(Context context) {
+       final int width = context.getResources().getDisplayMetrics().widthPixels;
+        int widthInDp = px2dp(context,width);
+        SunLog.d("widthInDp",":"+widthInDp);
+        return widthInDp;
+    }
+    public static float getHeightInDp(Context context){
+        final int height = context.getResources().getDisplayMetrics().heightPixels;
+        int heightInDp = px2dp(context,height);
+        SunLog.d("heightInDp",":"+heightInDp);
+
+        return heightInDp;
+    }
+    public static int px2dp(Context context,int value){
+        final float scale  =context.getResources().getDisplayMetrics().density;
+        SunLog.d("Density",":"+scale);
+        return (int) (value/scale);
+    }
+
+    public static int dp2px(Context context,int value){
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int)(value*scale);
     }
 
 

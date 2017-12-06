@@ -8,5 +8,9 @@
         app:showAsAction="always" />
         <!--app:actionProviderClass="android.support.v7.widget.ShareActionProvider"-->
 
+    <item
+        android:id="@+id/refresh"
+        android:title="@string/action_refresh"
+        app:showAsAction="never" />
 
 </menu>

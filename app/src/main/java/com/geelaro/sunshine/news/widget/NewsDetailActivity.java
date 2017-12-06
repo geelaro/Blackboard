@@ -87,11 +87,17 @@ public class NewsDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.news_share:
+                //系统分享
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT, URL);
                 startActivity(Intent.createChooser(intent, getTitle()));
                 return true;
+
+            case R.id.refresh:
+                mWebView.reload();
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

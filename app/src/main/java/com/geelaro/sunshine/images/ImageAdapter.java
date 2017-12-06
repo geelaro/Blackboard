@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.beans.ImageBean;
 import com.geelaro.sunshine.utils.SunLog;
 import com.geelaro.sunshine.utils.SunshineApp;
+import com.geelaro.sunshine.utils.ToolUtils;
 
 import java.util.List;
 
@@ -23,11 +25,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHold
     private final static String TAG = ImageAdapter.class.getSimpleName();
     private List<ImageBean> mData;
     private Context mContext;
+    private int mMaxWidth;
+    private int mMaxHeight;
 
 
     public ImageAdapter(Context mContext) {
         this.mContext = mContext;
         SunLog.d(TAG, "mData");
+        mMaxWidth = ToolUtils.getWidthInPx(mContext) - ToolUtils.dp2px(mContext, 32);
+        mMaxHeight = ToolUtils.getHeightInPx(mContext) - ToolUtils.dp2px(mContext, 156);
     }
 
     /**
@@ -58,7 +64,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHold
             return;
         }
         holder.titleView.setText(imageBean.getTitle());
-
+        //图尺寸
+        float scale = (float) imageBean.getWidth() / (float) mMaxWidth;
+        int height = (int) (imageBean.getHeight() / scale);
+//        if (height > mMaxHeight) {
+//            height = mMaxHeight;
+//        }
+        holder.imageView.setLayoutParams(new LinearLayout.LayoutParams(mMaxWidth, height));
         ImageGlide.display(mContext, imageBean.getThumburl(), holder.imageView);
         SunLog.d(TAG, "ImageGlide:display");
 
