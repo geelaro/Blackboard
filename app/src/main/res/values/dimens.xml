@@ -6,27 +6,23 @@
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+    <!-- CardView -->
+    <dimen name="card_margin">5dp</dimen>
+    <dimen name="card_padding">8dp</dimen>
+
+    <!-- Text -->
     <dimen name="text_middle_size">16sp</dimen>
     <dimen name="text_margin">10dp</dimen>>
 
+    <!-- weather -->
     <dimen name="weather_detail_horizontal_padding">32dp</dimen>
     <dimen name="weather_detail_vertical_padding">16dp</dimen>
 
-    <!-- ToolBar size -->
-    <dimen name="toolbar_size">48dp</dimen>
-
-    <!-- Icon Sizes -->
-    <dimen name="today_icon">96dp</dimen>
-    <dimen name="list_icon">40dp</dimen>
-
-    <!-- Text Sizes - We are using DP here rather than SP because these are already large
-         font sizes, and going larger will cause lots of view problems.  This is only for
-         the large weather numbers in the weather list -->
+    <!-- Text Sizes -->
     <dimen name="weather_text_size">28dp</dimen>
     <dimen name="weather_text_size_today">72sp</dimen>
     <dimen name="weather_date_text_size">20sp</dimen>
     <dimen name="weather_desc_text_size">20sp</dimen>
-
 
     <dimen name="weather_temperature_space">4dp</dimen>
 
@@ -45,4 +41,14 @@
 
     <!-- Image Fragment -->
     <dimen name="image_horizontal_margin">8dp</dimen>
-    <dimen name="image_vertical_margin">8dp</dimen></resources>
+    <dimen name="image_vertical_margin">8dp</dimen>
+
+    <!-- ToolBar size -->
+    <dimen name="toolbar_size">48dp</dimen>
+
+    <!-- Icon Sizes -->
+    <dimen name="today_icon">96dp</dimen>
+    <dimen name="list_icon">40dp</dimen>
+
+</resources>
+

@@ -18,6 +18,7 @@ import com.geelaro.sunshine.beans.ImageBean;
 import com.geelaro.sunshine.images.presenter.ImagePresenter;
 import com.geelaro.sunshine.images.presenter.ImagePresenterImpl;
 import com.geelaro.sunshine.images.view.ImageView;
+import com.geelaro.sunshine.utils.ShowToast;
 import com.geelaro.sunshine.utils.SunLog;
 import com.geelaro.sunshine.utils.SunshineApp;
 
@@ -27,9 +28,10 @@ import java.util.List;
 
 /**
  * Created by geelaro on 2017/10/12.
+ * ImageFragment
  */
 
-public class ImageFragment extends Fragment implements ImageView,SwipeRefreshLayout.OnRefreshListener{
+public class ImageFragment extends Fragment implements ImageView, SwipeRefreshLayout.OnRefreshListener {
     private final static String TAG = ImageFragment.class.getSimpleName();
     private ImageAdapter mImageAdapter;
     private List<ImageBean> mData;
@@ -57,7 +59,7 @@ public class ImageFragment extends Fragment implements ImageView,SwipeRefreshLay
 
         manager = new LinearLayoutManager(getActivity());
         // SwipeRefreshLayout
-        mRefreshLayout = (SwipeRefreshLayout)rootView.findViewById(R.id.image_refresh);
+        mRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.image_refresh);
         mRefreshLayout.setColorSchemeResources(R.color.color_nav_center);
         mRefreshLayout.setOnRefreshListener(this);
 
@@ -67,12 +69,32 @@ public class ImageFragment extends Fragment implements ImageView,SwipeRefreshLay
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(mImageAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addOnScrollListener(mOnScrollListener);
 
         SunLog.d(TAG, "Fragment:onCreateView");
         onRefresh();
 
         return rootView;
     }
+
+    private RecyclerView.OnScrollListener mOnScrollListener = new RecyclerView.OnScrollListener() {
+        int lastVisibleItem;
+
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            if (newState == RecyclerView.SCROLL_STATE_IDLE &&
+                    lastVisibleItem + 1 == mImageAdapter.getItemCount()) {
+                ShowToast.Short(getString(R.string.image_hit));
+            }
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            lastVisibleItem = manager.findLastVisibleItemPosition();
+        }
+    };
 
     @Override
     public void addImageData(List<ImageBean> list) {
@@ -96,12 +118,14 @@ public class ImageFragment extends Fragment implements ImageView,SwipeRefreshLay
     }
 
     @Override
-    public void showErrorMsg(String msg) {
-        //TODO
+    public void showErrorMsg() {
+        if (isAdded()) {
+            ShowToast.Short(getString(R.string.load_fail));
+        }
     }
 
     @Override
     public void onRefresh() {
-            mImagePresenter.loadImageList();
-        }
+        mImagePresenter.loadImageList();
+    }
 }

@@ -23,6 +23,7 @@ public class ImagePresenterImpl implements ImagePresenter, OnLoadImageListListen
 
     @Override
     public void loadImageList() {
+        mImageView.showProgress();
         mImageModel.loadImageList(this);
     }
 
@@ -35,7 +36,7 @@ public class ImagePresenterImpl implements ImagePresenter, OnLoadImageListListen
     @Override
     public void onFailure(String msg, Exception e) {
         mImageView.hideProgress();
-        mImageView.showErrorMsg(msg);
+        mImageView.showErrorMsg();
 
     }
 

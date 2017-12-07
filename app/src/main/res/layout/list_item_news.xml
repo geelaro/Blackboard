@@ -1,58 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    app:cardBackgroundColor="@color/colorWhite"
+    android:layout_marginLeft="@dimen/card_margin"
+    android:layout_marginRight="@dimen/card_margin"
+    android:layout_marginBottom="@dimen/card_margin">
 
-
-    <ImageView
-        android:id="@+id/newsImage"
-        android:layout_width="86dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_clear" />
-
-
-    <TextView
-        android:id="@+id/newsTitle"
-        android:layout_width="0dp"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textColor="@color/primary_text"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/newsImage"
-        app:layout_constraintTop_toTopOf="@+id/newsImage"
-        tools:text="@string/app_description" />
+        android:padding="@dimen/card_padding">
 
-    <TextView
-        android:id="@+id/newsDigest"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:maxLines="2"
-        android:textColor="@color/secondary_text"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/newsImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/newsImage"
-        tools:text="新华社北京11月5日电题：积极探索实践形成宝贵经验国家监察体制改革试点取得实效" />
+        <ImageView
+            android:id="@+id/newsImage"
+            android:layout_width="86dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="4dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <android.support.constraint.Guideline
-        android:id="@+id/newsGuideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="1.0"/>
+        <TextView
+            android:id="@+id/newsTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/primary_text"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/newsImage"
+            app:layout_constraintTop_toTopOf="@+id/newsImage" />
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/news_source"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:maxLines="1"
+            android:textColor="@color/secondary_text"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/newsImage"
+            app:layout_constraintEnd_toStartOf="@+id/news_mtime"
+            app:layout_constraintStart_toEndOf="@+id/newsImage" />
+
+        <TextView
+            android:id="@+id/news_mtime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:maxLines="1"
+            android:textColor="@color/secondary_text"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/news_source"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <!--<android.support.constraint.Guideline-->
+            <!--android:id="@+id/newsGuideline"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--app:layout_constraintGuide_percent="1.0" />-->
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

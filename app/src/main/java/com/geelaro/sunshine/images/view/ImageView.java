@@ -6,11 +6,12 @@ import java.util.List;
 
 /**
  * Created by geelaro on 2017/10/14.
+ * ImageView的接口
  */
 
 public interface ImageView {
     void addImageData(List<ImageBean> list);
     void showProgress();
     void hideProgress();
-    void showErrorMsg(String msg);
+    void showErrorMsg();
 }

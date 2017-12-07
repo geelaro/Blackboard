@@ -19,6 +19,7 @@ import java.util.List;
 
 /**
  * Created by geelaro on 2017/10/12.
+ * ImageFragment的adapter
  */
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHolder> {
@@ -33,7 +34,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHold
         this.mContext = mContext;
         SunLog.d(TAG, "mData");
         mMaxWidth = ToolUtils.getWidthInPx(mContext) - ToolUtils.dp2px(mContext, 32);
-        mMaxHeight = ToolUtils.getHeightInPx(mContext) - ToolUtils.dp2px(mContext, 156);
+//        mMaxHeight = ToolUtils.getHeightInPx(mContext) - ToolUtils.dp2px(mContext, 156);
     }
 
     /**
@@ -71,6 +72,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHold
 //            height = mMaxHeight;
 //        }
         holder.imageView.setLayoutParams(new LinearLayout.LayoutParams(mMaxWidth, height));
+        //使用Glide加载图片
         ImageGlide.display(mContext, imageBean.getThumburl(), holder.imageView);
         SunLog.d(TAG, "ImageGlide:display");
 
@@ -81,6 +83,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHold
         return mData != null ? mData.size() : 0;
     }
 
+    /**
+     * ViewHolder
+     */
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageView;
         private TextView titleView;
