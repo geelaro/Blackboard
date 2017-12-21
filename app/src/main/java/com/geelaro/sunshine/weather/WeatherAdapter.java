@@ -83,8 +83,8 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
 
         holder.weatherImage.setImageResource(weatherImageId); //Weather Icon
         holder.weatherDesc.setText(weatherBean.getDesc()); //Weather Description
-        holder.lowTemp.setText(String.valueOf(weatherBean.getMinTemp())); //Low temperature
-        holder.highTemp.setText(String.valueOf(weatherBean.getMaxTemp()));//High temperature
+        holder.lowTemp.setText(ToolUtils.formatTemperature(mContext,weatherBean.getMinTemp())); //Low temperature
+        holder.highTemp.setText(ToolUtils.formatTemperature(mContext,weatherBean.getMaxTemp()));//High temperature
         holder.dateText.setText(weatherBean.getDate());//date
         SunLog.d(TAG, "BindView");
     }

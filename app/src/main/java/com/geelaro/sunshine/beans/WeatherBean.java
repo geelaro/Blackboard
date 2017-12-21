@@ -9,8 +9,8 @@ public class WeatherBean {
 
     private int weatherId;
     private String desc; //天气状况
-    private Long maxTemp;//最高温
-    private Long minTemp;//最低温
+    private double maxTemp;//最高温
+    private double minTemp;//最低温
     private String date;
 
 
@@ -22,11 +22,11 @@ public class WeatherBean {
         return desc;
     }
 
-    public Long getMaxTemp() {
+    public double getMaxTemp() {
         return maxTemp;
     }
 
-    public Long getMinTemp() {
+    public double getMinTemp() {
         return minTemp;
     }
 
@@ -43,11 +43,11 @@ public class WeatherBean {
     }
 
 
-    public void setMaxTemp(Long maxTemp) {
+    public void setMaxTemp(double maxTemp) {
         this.maxTemp = maxTemp;
     }
 
-    public void setMinTemp(Long minTemp) {
+    public void setMinTemp(double minTemp) {
         this.minTemp = minTemp;
     }
 

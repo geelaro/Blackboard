@@ -122,42 +122,55 @@ public class ToolUtils {
      */
     public static int getWidthInPx(Context context) {
         final int width = context.getResources().getDisplayMetrics().widthPixels;
-        SunLog.d("WidthInPx",":"+width);
+        SunLog.d("WidthInPx", ":" + width);
         return width;
     }
 
+    /**
+     * 获取当前设备屏幕高度in pixel
+     */
     public static int getHeightInPx(Context context) {
         final int height = context.getResources().getDisplayMetrics().heightPixels;
-        SunLog.d("HeightInPx",":"+height);
+        SunLog.d("HeightInPx", ":" + height);
 
         return height;
     }
 
     public static float getWidthInDp(Context context) {
-       final int width = context.getResources().getDisplayMetrics().widthPixels;
-        int widthInDp = px2dp(context,width);
-        SunLog.d("widthInDp",":"+widthInDp);
+        final int width = context.getResources().getDisplayMetrics().widthPixels;
+        int widthInDp = px2dp(context, width);
+        SunLog.d("widthInDp", ":" + widthInDp);
         return widthInDp;
     }
-    public static float getHeightInDp(Context context){
+
+    public static float getHeightInDp(Context context) {
         final int height = context.getResources().getDisplayMetrics().heightPixels;
-        int heightInDp = px2dp(context,height);
-        SunLog.d("heightInDp",":"+heightInDp);
+        int heightInDp = px2dp(context, height);
+        SunLog.d("heightInDp", ":" + heightInDp);
 
         return heightInDp;
     }
-    public static int px2dp(Context context,int value){
-        final float scale  =context.getResources().getDisplayMetrics().density;
-        SunLog.d("Density",":"+scale);
-        return (int) (value/scale);
-    }
 
-    public static int dp2px(Context context,int value){
+    /**
+     * change pixel to dp
+     **/
+    public static int px2dp(Context context, int value) {
         final float scale = context.getResources().getDisplayMetrics().density;
-        return (int)(value*scale);
+        SunLog.d("Density", ":" + scale);
+        return (int) (value / scale);
     }
 
+    /**
+     * change dp to pixel
+     **/
+    public static int dp2px(Context context, int value) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (value * scale);
+    }
 
+    /**
+     * weather data URL
+     **/
     public static Uri getWeatherURL() {
         String format = "json";
         String units = "metric";
@@ -180,6 +193,15 @@ public class ToolUtils {
 
         return builtUri;
     }
+
+    /**
+     * 温度格式
+     **/
+    public static String formatTemperature(Context context, double temp) {
+
+        return context.getString(R.string.format_temperature, temp);
+    }
+    /** **/
 
     public static int getSmallWeatherImage(int weatherId) {
         if (weatherId >= 200 && weatherId <= 232) {
@@ -216,7 +238,7 @@ public class ToolUtils {
         return R.drawable.ic_storm;
     }
 
-    public static int getBigWeatherImage(int weatherId){
+    public static int getBigWeatherImage(int weatherId) {
         if (weatherId >= 200 && weatherId <= 232) {
             return R.drawable.art_storm;
         } else if (weatherId >= 300 && weatherId <= 321) {
