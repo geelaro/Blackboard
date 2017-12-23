@@ -10,6 +10,8 @@ public class NewsBean implements Serializable {
     private String imgsrc;
     private String title;
     private String digest;
+    private String source;
+    private String mtime;
     private String url;
 
     public String getImgsrc() {
@@ -28,6 +30,14 @@ public class NewsBean implements Serializable {
         return url;
     }
 
+    public String getSource() {
+        return source;
+    }
+
+    public String getMtime() {
+        return mtime;
+    }
+
     public void setImgsrc(String imgsrc) {
         this.imgsrc = imgsrc;
     }
@@ -42,5 +52,13 @@ public class NewsBean implements Serializable {
 
     public void setDetailUrl(String url) {
         this.url = url;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public void setMtime(String mtime) {
+        this.mtime = mtime;
     }
 }

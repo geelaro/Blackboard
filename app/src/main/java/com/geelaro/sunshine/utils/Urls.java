@@ -22,8 +22,9 @@ public class Urls {
     //Common
     public static final String NEWS_COMMON_URL = "http://c.m.163.com/nc/article/list/";
     //
+    public static final int PAGE_NUM = 10;
     private static final int PAGE_SIZE = 20;
-    public static final String END_URL = "0"+"-" + PAGE_SIZE + ".html";
+    public static final String END_URL =  "-" + PAGE_SIZE + ".html";
 
 
 }

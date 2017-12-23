@@ -106,8 +106,17 @@ public class NewsDetailActivity extends AppCompatActivity {
     //WebView init
     private void initWebSettings() {
         WebSettings settings = mWebView.getSettings();
-        settings.setJavaScriptEnabled(true);
+        //设置AppCache存储路径
+        String cacheDirPath = getApplicationContext().getFilesDir().getAbsolutePath()+"cache/";
+        settings.setAppCachePath(cacheDirPath);
+        //存储大小
+        settings.setAppCacheMaxSize(20*1024*1024);
+        //开启Application Cache存储机制
         settings.setAppCacheEnabled(true);
+
+        settings.setJavaScriptEnabled(true); //开启js,即开启IndexedDB
+        settings.setDomStorageEnabled(true);//开启Dom Storage缓存机制
+
         settings.setLoadWithOverviewMode(true);
         settings.setSupportZoom(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);

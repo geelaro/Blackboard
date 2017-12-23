@@ -52,7 +52,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemViewHolder
         }
         ImageGlide.display(mContext,newsBean.getImgsrc(),  holder.newsImage);
         holder.newsTitle.setText(newsBean.getTitle());
-        holder.newsDigest.setText(newsBean.getDigest());
+        holder.newsSource.setText(newsBean.getSource());
+        holder.newsMtime.setText(newsBean.getMtime());
         SunLog.d(TAG,"onBindViewHolder");
 
     }
@@ -74,13 +75,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemViewHolder
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
          private ImageView newsImage;
          private TextView newsTitle;
-         private TextView newsDigest;
+         private TextView newsSource;
+         private TextView newsMtime;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             newsImage = (ImageView) itemView.findViewById(R.id.newsImage);
             newsTitle = (TextView) itemView.findViewById(R.id.newsTitle); //新闻标题
-            newsDigest = (TextView) itemView.findViewById(R.id.newsDigest); //新闻摘要
+            newsSource = (TextView) itemView.findViewById(R.id.news_source); //新闻来源
+            newsMtime = (TextView) itemView.findViewById(R.id.news_mtime);//新闻时间
             itemView.setOnClickListener(this);
         }
 

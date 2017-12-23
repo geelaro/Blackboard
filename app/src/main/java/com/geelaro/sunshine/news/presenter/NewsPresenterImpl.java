@@ -5,6 +5,7 @@ import com.geelaro.sunshine.news.model.NewsModel;
 import com.geelaro.sunshine.news.model.NewsModelImpl;
 import com.geelaro.sunshine.news.model.OnLoadNewsListener;
 import com.geelaro.sunshine.news.view.NewsView;
+import com.geelaro.sunshine.utils.SunLog;
 import com.geelaro.sunshine.utils.Urls;
 import com.geelaro.sunshine.news.widget.NewsFragmentManager;
 
@@ -24,9 +25,13 @@ public class NewsPresenterImpl implements NewsPresenter, OnLoadNewsListener {
     }
 
     @Override
-    public void loadNewsList(int type) {
-        String url = getUrl(type);
+    public void loadNewsList(int type, int pageIndex) {
+        String url = getUrl(type, pageIndex);
+        if (pageIndex == 0) {
+            mNewsView.showProgress();
+        }
         mNewsModel.loadNewsList(type, url, this);
+        SunLog.d("NewsURL: ",url);
     }
 
     @Override
@@ -44,7 +49,7 @@ public class NewsPresenterImpl implements NewsPresenter, OnLoadNewsListener {
     /**
      * 获取相应新闻页面的url
      */
-    public static String getUrl(int type) {
+    public static String getUrl(int type, int pageIndex) {
         StringBuffer sb = new StringBuffer();
         switch (type) {
             case NewsFragmentManager.NEWS_TYPE_TOP:
@@ -60,9 +65,9 @@ public class NewsPresenterImpl implements NewsPresenter, OnLoadNewsListener {
                 sb.append(Urls.NEWS_COMMON_URL).append(Urls.JOKE_ID);
                 break;
             default:
-                sb.append(Urls.NEWS_COMMON_URL).append(Urls.JOKE_ID);
+                sb.append(Urls.NEWS_URL_HOST).append(Urls.TOP_ID);
         }
-        sb.append("/").append(Urls.END_URL);
+        sb.append("/").append(pageIndex).append(Urls.END_URL);
         return sb.toString();
     }
 }

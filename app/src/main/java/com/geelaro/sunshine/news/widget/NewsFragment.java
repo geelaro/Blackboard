@@ -20,7 +20,9 @@ import com.geelaro.sunshine.news.presenter.NewsPresenter;
 import com.geelaro.sunshine.news.presenter.NewsPresenterImpl;
 import com.geelaro.sunshine.news.view.NewsView;
 import com.geelaro.sunshine.utils.ShowToast;
+import com.geelaro.sunshine.utils.SunLog;
 import com.geelaro.sunshine.utils.SunshineApp;
+import com.geelaro.sunshine.utils.Urls;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,23 +32,25 @@ import java.util.List;
  * Created by geelaro on 2017/6/15.
  */
 
-public class NewsFragment extends Fragment implements NewsView,SwipeRefreshLayout.OnRefreshListener{
+public class NewsFragment extends Fragment implements NewsView, SwipeRefreshLayout.OnRefreshListener {
     private static final String TAG = NewsFragment.class.getSimpleName(); //TAG
     private static final String NEWS_TYPE = "type";
+    private int pageIndex = 0;
     private int mType;
     private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager  manager;
+    private LinearLayoutManager manager;
     private NewsAdapter mNewsAdapter;
     private List<NewsBean> mData;
     private NewsPresenter mPresenter;
     private SwipeRefreshLayout mRefreshLayout;
 
 
-    public static NewsFragment newInstance(int type){
+    public static NewsFragment newInstance(int type) {
         NewsFragment nfm = new NewsFragment();
         Bundle args = new Bundle();
-        args.putInt(NEWS_TYPE,type);
+        args.putInt(NEWS_TYPE, type);
         nfm.setArguments(args);
+        SunLog.d("type: ",""+type);
 
         return nfm;
     }
@@ -56,6 +60,7 @@ public class NewsFragment extends Fragment implements NewsView,SwipeRefreshLayou
         super.onCreate(savedInstanceState);
         mPresenter = new NewsPresenterImpl(this);
         mType = getArguments().getInt(NEWS_TYPE);
+        SunLog.d("mType",""+mType);
     }
 
     @Override
@@ -70,38 +75,66 @@ public class NewsFragment extends Fragment implements NewsView,SwipeRefreshLayou
         mNewsAdapter = new NewsAdapter(SunshineApp.getContext());
         mNewsAdapter.setOnItemClickListener(itemClickListener);
         manager = new LinearLayoutManager(getActivity());
-        recyclerView = (RecyclerView)newsView.findViewById(R.id.recycleView_news);
+        recyclerView = (RecyclerView) newsView.findViewById(R.id.recycleView_news);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(mNewsAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addOnScrollListener(mOnScrollListener);
 
         onRefresh();
 
         return newsView;
     }
 
+    //加载更多
+    private RecyclerView.OnScrollListener mOnScrollListener = new RecyclerView.OnScrollListener() {
+        int lastVisibleItem;
+
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            if (newState == RecyclerView.SCROLL_STATE_IDLE &&
+                    lastVisibleItem + 1 == mNewsAdapter.getItemCount()) {
+                //加载更多
+//                mPresenter.loadNewsList(mType, pageIndex + Urls.PAGE_NUM);
+                ShowToast.Short("向上滑动加载更多精彩内容...");
+            }
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            lastVisibleItem = manager.findLastVisibleItemPosition();
+        }
+    };
 
     @Override
     public void addNewsData(List<NewsBean> list) {
-        if (mData==null){
+        if (mData == null) {
             mData = new ArrayList<>();
         }
         mData.clear();//clear data
-        mNewsAdapter.setData(mData);
         mData.addAll(list);
+        if (pageIndex == 0) {
+            mNewsAdapter.setData(mData);
+        } else {
+            mNewsAdapter.notifyDataSetChanged();
+        }
+
+//        pageIndex += Urls.PAGE_NUM; //new pageIndex
     }
 
     private NewsAdapter.OnItemClickListener itemClickListener = new NewsAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View v, int position) {
-            if (mData.size()<=0){
+            if (mData.size() <= 0) {
                 return;
             }
             NewsBean news = mData.get(position);
-            Intent intent = new Intent(getActivity(),NewsDetailActivity.class);
-            intent.putExtra("news",news);
+            Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+            intent.putExtra("news", news);
 
             startActivity(intent);
         }
@@ -119,11 +152,13 @@ public class NewsFragment extends Fragment implements NewsView,SwipeRefreshLayou
 
     @Override
     public void showErrorMsg(String msg) {
-            ShowToast.Short(msg);
+        ShowToast.Short(msg);
     }
 
     @Override
     public void onRefresh() {
-        mPresenter.loadNewsList(mType);
+        int pageIndex = 0;
+
+        mPresenter.loadNewsList(mType, pageIndex);
     }
 }

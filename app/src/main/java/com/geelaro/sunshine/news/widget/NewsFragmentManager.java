@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -58,7 +59,6 @@ public class NewsFragmentManager extends Fragment {
         pagerAdapter.addFragment(getString(R.string.news_nba));
         pagerAdapter.addFragment(getString(R.string.news_cars));
         pagerAdapter.addFragment(getString(R.string.news_jokes));
-
         mViewPager.setAdapter(pagerAdapter);
     }
 
