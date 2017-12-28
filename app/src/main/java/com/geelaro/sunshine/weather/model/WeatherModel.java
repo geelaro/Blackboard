@@ -9,6 +9,7 @@ import com.geelaro.sunshine.utils.ToolUtils;
 import com.geelaro.sunshine.utils.Urls;
 import com.geelaro.sunshine.utils.WeatherJsonUtils;
 import com.geelaro.sunshine.weather.contract.WeatherContract;
+import com.geelaro.sunshine.weather.presenter.WeatherPresenter;
 
 import org.json.JSONException;
 
