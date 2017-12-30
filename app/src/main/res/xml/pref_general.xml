@@ -11,5 +11,14 @@
         android:summaryOn="@string/pref_enable_notifications_true"
         android:defaultValue="@string/pref_enable_notifications_default" />
 
+    <ListPreference
+        android:defaultValue="-1"
+        android:entries="@array/language_list_titles"
+        android:entryValues="@array/language_list_values"
+        android:key="@string/pref_key_language"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_language" />
+
 
 </PreferenceScreen>

@@ -10,6 +10,8 @@
 ![image](https://raw.githubusercontent.com/geelaro/SunshinePro/develop/screenshot/images.png)
 ###### 侧滑菜单
 ![image](https://raw.githubusercontent.com/geelaro/SunshinePro/develop/screenshot/nav.png)
+###### 设置
+![image](https://raw.githubusercontent.com/geelaro/SunshinePro/develop/screenshot/settings.png)
 
 ## 数据源
 - 天气数据使用 [OpenWeatherMap](http://openweathermap.org/).

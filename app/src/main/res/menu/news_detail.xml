@@ -10,6 +10,7 @@
 
     <item
         android:id="@+id/refresh"
+        android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/action_refresh"
         app:showAsAction="never" />
 

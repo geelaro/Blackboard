@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_settings"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/settings_bar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/toolbar_size"-->
+        <!--android:background="@color/colorToolbar"-->
+        <!--android:fitsSystemWindows="true"-->
+        <!--app:popupTheme="@style/Theme.AppCompat.Light" />-->
+
+    <!--<FrameLayout-->
+        <!--android:id="@+id/frame_settings"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" >-->
+    <!--</FrameLayout>-->
+
+    <include
+        layout="@layout/app_bar_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

@@ -37,16 +37,16 @@ public class OkHttpUtils {
 
     private static final String TAG = OkHttpUtils.class.getSimpleName(); //
 
-    private static OkHttpUtils mInstance;
+    private static volatile OkHttpUtils mInstance;
     private OkHttpClient mOkHttpClient;
 
     private Handler mDelivery;
-    private static final int CACHE_SIZE =1024 * 1024 * 10; //cache size is 10Mb
+    private static final int CACHE_SIZE = 1024 * 1024 * 10; //cache size is 10Mb
 
 
     private OkHttpUtils() {
         File cacheFile =
-                new File(SunshineApp.getContext().getExternalCacheDir(),"cache");
+                new File(SunshineApp.getContext().getExternalCacheDir(), "cache");
         Cache cache = new Cache(cacheFile, CACHE_SIZE); //10Mb
 
         mOkHttpClient = new OkHttpClient.Builder()
@@ -59,10 +59,14 @@ public class OkHttpUtils {
         mDelivery = new Handler(Looper.getMainLooper());
 
     }
-
+    //单例
     public synchronized static OkHttpUtils newInstance() {
         if (mInstance == null) {
-            mInstance = new OkHttpUtils();
+            synchronized (OkHttpUtils.class) {
+                if (mInstance == null) {
+                    mInstance = new OkHttpUtils();
+                }
+            }
         }
         return mInstance;
     }
@@ -71,13 +75,12 @@ public class OkHttpUtils {
     private void getRequest(String url, final ResultCallback callback) {
         Request request;
         //设置缓存时间为10m
-        CacheControl cacheControl  = new CacheControl.Builder()
-                .maxAge(60,TimeUnit.SECONDS)
+        CacheControl cacheControl = new CacheControl.Builder()
+                .maxAge(60, TimeUnit.SECONDS)
                 .build();
-        if (!ToolUtils.isNetworkAvailable(SunshineApp.getContext())){
+        if (!ToolUtils.isNetworkAvailable(SunshineApp.getContext())) {
             request = new Request.Builder().url(url).cacheControl(CacheControl.FORCE_CACHE).build();
-        }
-        else {
+        } else {
             request = new Request.Builder().url(url).cacheControl(cacheControl).build();
         }
         deliveryResult(callback, request);
@@ -109,8 +112,8 @@ public class OkHttpUtils {
             public void onResponse(Call call, Response response) {
                 try {
                     String str = response.body().string();
-                    SunLog.d(TAG,"response cache:"+response.cacheResponse());
-                    SunLog.d(TAG,"response networkResponse："+response.networkResponse());
+                    SunLog.d(TAG, "response cache:" + response.cacheResponse());
+                    SunLog.d(TAG, "response networkResponse：" + response.networkResponse());
 
                     if (callback.mType == String.class) {
                         sendSuccessCallBack(callback, str);

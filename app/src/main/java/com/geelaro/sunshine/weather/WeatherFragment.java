@@ -1,27 +1,18 @@
 package com.geelaro.sunshine.weather;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.beans.WeatherBean;
-import com.geelaro.sunshine.main.SettingsActivity;
-import com.geelaro.sunshine.news.widget.NewsDetailActivity;
 import com.geelaro.sunshine.utils.ShowToast;
 import com.geelaro.sunshine.utils.SunLog;
 import com.geelaro.sunshine.utils.SunshineApp;
@@ -84,26 +75,6 @@ public class WeatherFragment extends Fragment implements WeatherContract.Weather
         return rootView;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            //noinspection SimplifiableIfStatement
-            case R.id.action_settings:
-                startActivity(new Intent(getActivity(), SettingsActivity.class));
-                Log.d(TAG, "start to Settings: ");
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.frame_weather, menu);
-    }
 
     @Override
     public void onStart() {

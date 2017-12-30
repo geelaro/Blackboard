@@ -14,6 +14,7 @@ public class MainPresenter implements MainContract.Presenter {
         this.mMainView = mainView;
     }
 
+    //NavigationView 按钮
     @Override
     public void switchNavigation(int id) {
         switch (id) {
@@ -29,6 +30,8 @@ public class MainPresenter implements MainContract.Presenter {
             case R.id.nav_about:
                 mMainView.switch2About();
                 break;
+            case R.id.nav_settings:
+                mMainView.switch2Settings();
             default:
                 mMainView.switch2Weather();
         }

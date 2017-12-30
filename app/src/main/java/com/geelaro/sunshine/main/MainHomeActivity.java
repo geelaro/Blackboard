@@ -1,13 +1,23 @@
 package com.geelaro.sunshine.main;
 
+import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.ListPreference;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,8 +28,14 @@ import com.geelaro.sunshine.images.ImageFragment;
 import com.geelaro.sunshine.main.contract.MainContract;
 import com.geelaro.sunshine.main.presenter.MainPresenter;
 import com.geelaro.sunshine.news.widget.NewsFragmentManager;
+import com.geelaro.sunshine.settings.Settings;
+import com.geelaro.sunshine.settings.SettingsActivity;
+import com.geelaro.sunshine.utils.LanguageUtils;
 import com.geelaro.sunshine.utils.ShowToast;
+import com.geelaro.sunshine.utils.SunLog;
 import com.geelaro.sunshine.weather.WeatherFragment;
+
+import java.util.Locale;
 
 
 public class MainHomeActivity extends AppCompatActivity
@@ -37,6 +53,9 @@ public class MainHomeActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //language
+        LanguageUtils.changeLanguage(this);
+
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -55,7 +74,9 @@ public class MainHomeActivity extends AppCompatActivity
 
         switch2Weather();//首次进入程序是WeatherFragment
 //        switch2News();
+
     }
+
 
     @Override
     public void onBackPressed() {
@@ -149,5 +170,13 @@ public class MainHomeActivity extends AppCompatActivity
                 .replace(R.id.container, new AboutFragment())
                 .commit();
         toolbar.setTitle(R.string.fragment_me);
+    }
+
+
+
+    @Override
+    public void switch2Settings() {
+        startActivity(new Intent(this,SettingsActivity.class));
+
     }
 }

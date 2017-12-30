@@ -16,6 +16,8 @@ public interface MainContract {
         void switch2Images();
 
         void switch2About();
+
+        void switch2Settings();
     }
 
     interface Presenter {

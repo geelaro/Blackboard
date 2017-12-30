@@ -1,12 +1,9 @@
 package com.geelaro.sunshine.images;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -60,7 +57,7 @@ public class ImageFragment extends Fragment implements ImageView, SwipeRefreshLa
         manager = new LinearLayoutManager(getActivity());
         // SwipeRefreshLayout
         mRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.image_refresh);
-        mRefreshLayout.setColorSchemeResources(R.color.color_nav_center);
+        mRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark);
         mRefreshLayout.setOnRefreshListener(this);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycleView_image);

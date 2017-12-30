@@ -5,21 +5,20 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
 import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.beans.WeatherBean;
-import com.geelaro.sunshine.main.MainHomeActivity;
-import com.geelaro.sunshine.main.SettingsActivity;
+import com.geelaro.sunshine.settings.SettingsActivity;
 import com.geelaro.sunshine.utils.SunLog;
 import com.geelaro.sunshine.utils.SunshineApp;
 import com.geelaro.sunshine.utils.ToolUtils;
 import com.geelaro.sunshine.weather.contract.WeatherContract;
 import com.geelaro.sunshine.weather.model.WeatherModel;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**

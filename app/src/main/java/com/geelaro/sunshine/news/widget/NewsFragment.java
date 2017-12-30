@@ -22,7 +22,6 @@ import com.geelaro.sunshine.news.view.NewsView;
 import com.geelaro.sunshine.utils.ShowToast;
 import com.geelaro.sunshine.utils.SunLog;
 import com.geelaro.sunshine.utils.SunshineApp;
-import com.geelaro.sunshine.utils.Urls;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +68,7 @@ public class NewsFragment extends Fragment implements NewsView, SwipeRefreshLayo
 
         mRefreshLayout = (SwipeRefreshLayout) newsView.findViewById(R.id.news_refresh);
         /**设置刷新时旋转图标的颜色，这是一个可变参数，当设置多个颜色时，旋转一周改变一次颜色 */
-        mRefreshLayout.setColorSchemeResources(R.color.color_nav_end);
+        mRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mRefreshLayout.setOnRefreshListener(this);
 
         mNewsAdapter = new NewsAdapter(SunshineApp.getContext());
