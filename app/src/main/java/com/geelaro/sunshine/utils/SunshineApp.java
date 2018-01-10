@@ -27,7 +27,7 @@ public class SunshineApp extends Application {
         context = getApplicationContext();
 
         //语言设置
-//        LanguageUtils.changeLanguage(context);
+//        LanguageUtils.updateLanguage(context);
     }
 
     public static Context getContext() {

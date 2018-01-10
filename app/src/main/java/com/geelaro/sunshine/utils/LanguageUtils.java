@@ -27,7 +27,7 @@ public class LanguageUtils {
         return currentLocale.equals(getLocal());
     }
 
-    public static void changeLanguage(Context context) {
+    public static void updateLanguage(Context context) {
 
         Locale lang = getLocal();
         //根据读取到的数据设置

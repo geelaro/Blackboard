@@ -8,6 +8,7 @@ import android.preference.PreferenceFragment;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.main.MainHomeActivity;
@@ -21,7 +22,6 @@ public class SettingsFragment extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String TAG = SettingsFragment.class.getSimpleName();
-
     private static final String KEY_LIST = "language_list";
     private SharedPreferences prefs;
 
@@ -95,16 +95,17 @@ public class SettingsFragment extends PreferenceFragment implements
             if (LanguageUtils.isLanguageChanged()) {
                 Settings.needRecreate = true;
             }
+            if (Settings.needRecreate = true) {
+                restartHomeActivity();
+            }
         }
 
-        if (Settings.needRecreate = true) {
-            restartHomeActivity();
-        }
     }
 
     private void restartHomeActivity() {
         Intent intent = new Intent(getActivity(), MainHomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("setLanguage",true);
         startActivity(intent);
     }
 
