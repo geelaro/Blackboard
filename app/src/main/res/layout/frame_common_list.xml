@@ -2,14 +2,15 @@
 <android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/news_refresh"
+    android:id="@+id/common_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycleView_news"
+        android:id="@+id/recycleView_common"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:overScrollMode="ifContentScrolls"
         android:scrollbars="vertical"
         android:paddingTop="@dimen/card_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" >
