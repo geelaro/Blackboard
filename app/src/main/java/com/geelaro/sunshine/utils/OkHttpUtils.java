@@ -5,6 +5,7 @@ import android.os.Looper;
 import android.service.carrier.CarrierMessagingService;
 import android.util.Log;
 
+import com.geelaro.sunshine.settings.Settings;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.internal.$Gson$Types;
@@ -59,6 +60,7 @@ public class OkHttpUtils {
         mDelivery = new Handler(Looper.getMainLooper());
 
     }
+
     //单例
     public synchronized static OkHttpUtils newInstance() {
         if (mInstance == null) {
@@ -78,7 +80,7 @@ public class OkHttpUtils {
         CacheControl cacheControl = new CacheControl.Builder()
                 .maxAge(60, TimeUnit.SECONDS)
                 .build();
-        if (!ToolUtils.isNetworkAvailable(SunshineApp.getContext())) {
+        if (!NetworkUtils.isNetworkAvailable(SunshineApp.getContext())) {
             request = new Request.Builder().url(url).cacheControl(CacheControl.FORCE_CACHE).build();
         } else {
             request = new Request.Builder().url(url).cacheControl(cacheControl).build();
@@ -162,8 +164,8 @@ public class OkHttpUtils {
     /**
      * GET 接口
      **/
-    public static void get(String url, final ResultCallback callback) {
-        newInstance().getRequest(url, callback);
+    public  void get(String url, final ResultCallback callback) {
+       getRequest(url, callback);
     }
 
     public static abstract class ResultCallback<T> {

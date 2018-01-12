@@ -1,5 +1,6 @@
 package com.geelaro.sunshine.settings;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.util.Log;
 import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.main.MainHomeActivity;
 import com.geelaro.sunshine.utils.LanguageUtils;
+import com.geelaro.sunshine.weather.model.sync.WeatherSyncUtils;
 
 /**
  * Created by brian on 2017/12/30.
@@ -23,6 +25,7 @@ public class SettingsFragment extends PreferenceFragment implements
 
     private static final String TAG = SettingsFragment.class.getSimpleName();
     private static final String KEY_LIST = "language_list";
+    private static final String KEY_LOCATION = "location";
     private SharedPreferences prefs;
 
     @Override
@@ -31,7 +34,8 @@ public class SettingsFragment extends PreferenceFragment implements
         //Add Preferences's Resource
         addPreferencesFromResource(R.xml.pref_general);
         //bind
-        bindPreferenceSummaryToValue(findPreference("language_list"));
+        bindPreferenceSummaryToValue(findPreference(KEY_LIST));
+        bindPreferenceSummaryToValue(findPreference(KEY_LOCATION));
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         prefs.registerOnSharedPreferenceChangeListener(this);
@@ -90,6 +94,7 @@ public class SettingsFragment extends PreferenceFragment implements
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        Activity activity = getActivity();
         if (key.equals(KEY_LIST)) {
             // 先判断语言选项是否更改
             if (LanguageUtils.isLanguageChanged()) {
@@ -98,6 +103,8 @@ public class SettingsFragment extends PreferenceFragment implements
             if (Settings.needRecreate = true) {
                 restartHomeActivity();
             }
+        } else if (key.equals(KEY_LOCATION)) {
+//            WeatherSyncUtils.startImmediateSync(activity);//立即更新
         }
 
     }
@@ -105,7 +112,7 @@ public class SettingsFragment extends PreferenceFragment implements
     private void restartHomeActivity() {
         Intent intent = new Intent(getActivity(), MainHomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.putExtra("setLanguage",true);
+        intent.putExtra("setLanguage", true);
         startActivity(intent);
     }
 

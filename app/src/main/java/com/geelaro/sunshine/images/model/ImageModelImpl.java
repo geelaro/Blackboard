@@ -3,17 +3,9 @@ package com.geelaro.sunshine.images.model;
 import com.geelaro.sunshine.beans.ImageBean;
 import com.geelaro.sunshine.utils.ImageJsonUtils;
 import com.geelaro.sunshine.utils.OkHttpUtils;
-import com.geelaro.sunshine.utils.SunLog;
-import com.geelaro.sunshine.utils.Urls;
+import com.geelaro.sunshine.utils.SunApi;
 
-import java.io.IOException;
 import java.util.List;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * Created by geelaro on 2017/10/14.
@@ -40,7 +32,7 @@ public class ImageModelImpl implements ImageModel {
             }
         };
 
-        OkHttpUtils.get(Urls.IMAGE_URL, loadImageCallBack);
+        OkHttpUtils.newInstance().get(SunApi.IMAGE_URL, loadImageCallBack);
 
 
     }

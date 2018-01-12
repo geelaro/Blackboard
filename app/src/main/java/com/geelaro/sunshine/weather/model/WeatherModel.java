@@ -1,15 +1,12 @@
 package com.geelaro.sunshine.weather.model;
 
-import android.nfc.Tag;
-
 import com.geelaro.sunshine.beans.WeatherBean;
+import com.geelaro.sunshine.utils.NetworkUtils;
 import com.geelaro.sunshine.utils.OkHttpUtils;
 import com.geelaro.sunshine.utils.SunLog;
 import com.geelaro.sunshine.utils.ToolUtils;
-import com.geelaro.sunshine.utils.Urls;
 import com.geelaro.sunshine.utils.WeatherJsonUtils;
 import com.geelaro.sunshine.weather.contract.WeatherContract;
-import com.geelaro.sunshine.weather.presenter.WeatherPresenter;
 
 import org.json.JSONException;
 
@@ -26,7 +23,7 @@ public class WeatherModel implements WeatherContract.Model {
     @Override
     public void loadWeather(final OnLoadWeatherListListener listener) {
         //weather API's url
-        String url = ToolUtils.getWeatherURL().toString();
+        String url = NetworkUtils.getWeatherURL().toString();
         OkHttpUtils.ResultCallback<String> loadWeatherCallBack = new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onFailure(Exception e) {
@@ -47,7 +44,7 @@ public class WeatherModel implements WeatherContract.Model {
             }
         };
 
-        OkHttpUtils.get(url, loadWeatherCallBack);
+        OkHttpUtils.newInstance().get(url,loadWeatherCallBack);
     }
 
     public interface OnLoadWeatherListListener {

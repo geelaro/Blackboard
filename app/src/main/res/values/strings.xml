@@ -32,15 +32,6 @@
     <string name="image_hit">一次加载20条数据，请刷新更新。</string>
     <string name="load_fail">数据加载错误！</string>
 
-    <!--Units setting-->
-    <string name="pref_units_key">units</string>
-    <string name="pref_units_imperial">imperial</string>
-    <string name="pref_units_metric">metric</string>
-
-    <!--Location ID-->
-    <string name="default_location_value">94043</string>
-    <string name="default_location_city">Nanjing</string>
-
     <!-- Temperature formats in degrees -->
     <string name="format_temperature"><xliff:g id="temp">%1.0f</xliff:g>\u00B0</string>
 
@@ -51,6 +42,13 @@
     <string name="app_email">邮箱：geelaro.li@gmail.com</string>
 
     <!-- Strings related to Settings -->
+
+    <!-- Location Settings -->
+    <string name="pref_location_label">Location</string>
+
+    <string name="pref_location_key" translatable="false">location</string>
+    <string name="pref_location_default" translatable="false">Nanjing</string>
+
 
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Notifications</string>

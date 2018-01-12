@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.geelaro.sunshine.BaseListFragment;
 import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.beans.WeatherBean;
 import com.geelaro.sunshine.utils.ShowToast;
@@ -27,21 +28,17 @@ import java.util.List;
  * Created by geelaro on 2017/6/19.
  */
 
-public class WeatherFragment extends Fragment implements WeatherContract.WeatherView, SwipeRefreshLayout.OnRefreshListener {
+public class WeatherFragment extends Fragment implements WeatherContract.WeatherView,SwipeRefreshLayout.OnRefreshListener {
 
     private final static String TAG = WeatherFragment.class.getSimpleName();
-    private final static int ID_WEATHER_LOADER = 11;
     private WeatherAdapter mWeatherAdapter;
     private RecyclerView recyclerView;
     private Context mContext;
     private List<WeatherBean> mData;
-    private LinearLayoutManager manager;
+    private RecyclerView.LayoutManager manager;
     private WeatherPresenter mPresenter;
 
 
-    public WeatherFragment() {
-        super();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,11 +47,7 @@ public class WeatherFragment extends Fragment implements WeatherContract.Weather
         mContext = SunshineApp.getContext();
         mPresenter = new WeatherPresenter(this);
         SunLog.d(TAG, "onCreate");
-//        getLoaderManager().initLoader(ID_WEATHER_LOADER,null,this);
-
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -83,6 +76,12 @@ public class WeatherFragment extends Fragment implements WeatherContract.Weather
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        onRefresh();
+    }
+
+    @Override
     public void addWeatherData(List<WeatherBean> list) {
         if (mData == null) {
             mData = new ArrayList<>();
@@ -102,46 +101,4 @@ public class WeatherFragment extends Fragment implements WeatherContract.Weather
     public void onRefresh() {
         mPresenter.loadWeatherList();
     }
-
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        SunLog.d(TAG,"onattach");
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        SunLog.d(TAG,"onResume");
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        SunLog.d(TAG,"onPause");
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        SunLog.d(TAG,"onStop");
-//    }
-//
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        SunLog.d(TAG,"onDestroyView");
-//    }
-//
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        SunLog.d(TAG,"onDestroy");
-//    }
-//
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        SunLog.d(TAG,"onDetach");
-//    }
 }

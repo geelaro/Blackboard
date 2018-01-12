@@ -12,6 +12,7 @@ import com.geelaro.sunshine.utils.SunshineApp;
 public class Settings {
 
     public final static String LANGUAGE_LIST = "language_list";
+    public final static String LOCATION = "location";
 
     public static boolean needRecreate;
 

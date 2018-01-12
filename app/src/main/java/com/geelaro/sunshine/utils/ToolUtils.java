@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.geelaro.sunshine.BuildConfig;
 import com.geelaro.sunshine.R;
+import com.geelaro.sunshine.settings.Settings;
 
 import java.util.List;
 
@@ -67,7 +68,6 @@ public class ToolUtils {
     private final LocationListener listener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
-
         }
 
         @Override
@@ -98,24 +98,6 @@ public class ToolUtils {
     }
 
 
-    /**
-     * 判断网络情况
-     *
-     * @param context
-     * @return boolean
-     */
-    public static boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = null;
-        if (connectivityManager != null) {
-            networkInfo = connectivityManager.getActiveNetworkInfo();
-        }
-
-        if (networkInfo != null) {
-            return networkInfo.isAvailable();
-        }
-        return false;
-    }
 
     /**
      * 获取当前设备屏幕宽度in pixel
@@ -168,31 +150,6 @@ public class ToolUtils {
         return (int) (value * scale);
     }
 
-    /**
-     * weather data URL
-     **/
-    public static Uri getWeatherURL() {
-        String format = "json";
-        String units = "metric";
-        int numDays = 7;
-        String param = "Nanjing";
-
-        final String QUERY_PARAM = "q";
-        final String FORMAT_PARAM = "mode";
-        final String UNITS_PARAM = "units";
-        final String DAYS_PARAM = "cnt";
-        final String APPID_PARAM = "APPID";
-
-        Uri builtUri = Uri.parse(Urls.WEATHER_BASE_URL).buildUpon()
-                .appendQueryParameter(QUERY_PARAM, param)
-                .appendQueryParameter(FORMAT_PARAM, format)
-                .appendQueryParameter(UNITS_PARAM, units)
-                .appendQueryParameter(DAYS_PARAM, Integer.toString(numDays))
-                .appendQueryParameter(APPID_PARAM, BuildConfig.OPEN_WEATHER_API_KEY)
-                .build();
-
-        return builtUri;
-    }
 
     /**
      * 温度格式

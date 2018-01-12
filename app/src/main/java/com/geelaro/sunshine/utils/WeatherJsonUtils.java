@@ -21,6 +21,15 @@ import java.util.List;
  */
 
 public class WeatherJsonUtils {
+    private static final String OWM_CITY = "city";
+    private final static String OWM_CITY_NAME = "name";
+    private static final String OWM_LIST = "list";
+    private static final String OWM_WEATHER = "weather";
+    private static final String OWM_TEMPERATURE = "temp";
+    private static final String OWM_MAX = "max";
+    private static final String OWM_MIN = "min";
+    private static final String OWM_DESCRIPTION = "main";
+    private static final String OWM_ID = "id";
 
     private static String cityName;
 
@@ -29,7 +38,7 @@ public class WeatherJsonUtils {
         return cityName;
     }
 
-    public static List<WeatherBean> getWeatherInfo(String jsonStr) throws JSONException {
+    public static List<WeatherBean> getWeatherInfo(String jsonStr){
         List<WeatherBean> list = new ArrayList<>();
 
 
@@ -41,16 +50,13 @@ public class WeatherJsonUtils {
 
         List<WeatherBean> weatherBeanList = new ArrayList<>();
         // These are the names of the JSON objects that need to be extracted.
-        final String OWM_LIST = "list";
-        final String OWM_WEATHER = "weather";
-        final String OWM_TEMPERATURE = "temp";
-        final String OWM_MAX = "max";
-        final String OWM_MIN = "min";
-        final String OWM_DESCRIPTION = "main";
-        final String OWM_ID = "id";
+
 
         JSONObject forecastJson = new JSONObject(forecastJsonStr);
         JSONArray weatherArray = forecastJson.getJSONArray(OWM_LIST);
+
+        JSONObject cityObj = forecastJson.getJSONObject(OWM_CITY);
+        cityName = cityObj.getString(OWM_CITY_NAME);
 
         // OWM returns daily forecasts based upon the local time of the city that is being
         // asked for, which means that we need to know the GMT offset to translate this data

@@ -12,6 +12,7 @@ import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.beans.WeatherBean;
 import com.geelaro.sunshine.utils.SunLog;
 import com.geelaro.sunshine.utils.ToolUtils;
+import com.geelaro.sunshine.utils.WeatherJsonUtils;
 
 import java.util.List;
 
@@ -73,6 +74,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
         switch (viewType){
             case VIEW_TYPE_TODAY:
                 weatherImageId = ToolUtils.getBigWeatherImage(weatherId);
+                holder.cityName.setText(WeatherJsonUtils.getCityName());
                 break;
             case VIEW_TYPE_FUTURE_DAY:
                 weatherImageId = ToolUtils.getSmallWeatherImage(weatherId);
@@ -115,6 +117,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
         private TextView weatherDesc;
         private TextView highTemp;
         private TextView lowTemp;
+        private TextView cityName;
 
 
         public ItemViewHolder(View itemView) {
@@ -124,6 +127,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
             highTemp = (TextView) itemView.findViewById(R.id.high_temperature);
             lowTemp = (TextView) itemView.findViewById(R.id.low_temperature);
             dateText = (TextView) itemView.findViewById(R.id.date);
+            cityName = (TextView) itemView.findViewById(R.id.city);
         }
     }
 }
