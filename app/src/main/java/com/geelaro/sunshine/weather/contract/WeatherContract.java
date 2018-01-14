@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface WeatherContract {
     interface Model {
-        void loadWeather(WeatherModel.OnLoadWeatherListListener listener);
+        void loadWeather();
     }
 
     interface WeatherView {

@@ -104,7 +104,7 @@ public class SettingsFragment extends PreferenceFragment implements
                 restartHomeActivity();
             }
         } else if (key.equals(KEY_LOCATION)) {
-//            WeatherSyncUtils.startImmediateSync(activity);//立即更新
+            WeatherSyncUtils.startImmediateSync(activity);//立即更新
         }
 
     }

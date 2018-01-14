@@ -32,6 +32,7 @@ public class MainPresenter implements MainContract.Presenter {
                 break;
             case R.id.nav_settings:
                 mMainView.switch2Settings();
+                break;
             default:
                 mMainView.switch2Weather();
         }

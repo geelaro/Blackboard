@@ -17,6 +17,7 @@ import com.geelaro.sunshine.BuildConfig;
 import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.settings.Settings;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -228,6 +229,16 @@ public class ToolUtils {
 
         SunLog.e("getBigWeatherImage", "Unknown Weather: " + weatherId);
         return R.drawable.art_storm;
+    }
+
+    /**
+     * 日期格式
+     */
+    public static String getReadableDateString(long time) {
+        // Because the API returns a unix timestamp (measured in seconds),
+        // it must be converted to milliseconds in order to be converted to valid date.
+        SimpleDateFormat shortenedDateFormat = new SimpleDateFormat("EEE MMM dd");
+        return shortenedDateFormat.format(time);
     }
 
 

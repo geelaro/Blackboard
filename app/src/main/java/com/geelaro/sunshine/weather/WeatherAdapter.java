@@ -1,6 +1,7 @@
 package com.geelaro.sunshine.weather;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,6 @@ import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.beans.WeatherBean;
 import com.geelaro.sunshine.utils.SunLog;
 import com.geelaro.sunshine.utils.ToolUtils;
-import com.geelaro.sunshine.utils.WeatherJsonUtils;
 
 import java.util.List;
 
@@ -22,8 +22,8 @@ import java.util.List;
 
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemViewHolder> {
     private static final String TAG = WeatherAdapter.class.getSimpleName();
-    private List<WeatherBean> mData;
     private Context mContext;
+    private Cursor mCursor;
 
     private final static int VIEW_TYPE_TODAY = 0;
     private final static int VIEW_TYPE_FUTURE_DAY = 1;
@@ -36,16 +36,15 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
         SunLog.d(TAG, "WeatherAdapter Init.");
     }
 
-    public void setData(List<WeatherBean> mData) {
-        this.mData = mData;
-        this.notifyDataSetChanged(); //数据发生改动时要重新get
+    public void swapCursor(Cursor cursor) {
+        mCursor = cursor;
+        this.notifyDataSetChanged();
     }
-
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         int layoutId;
-        switch (viewType){
+        switch (viewType) {
             case VIEW_TYPE_TODAY:
                 layoutId = R.layout.list_item_weather_today;
                 break;
@@ -63,31 +62,28 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
-        WeatherBean weatherBean = mData.get(position);
-        if (weatherBean == null) {
-            return;
-        }
-        int weatherId = weatherBean.getWeatherId();
+        mCursor.moveToPosition(position);
         int weatherImageId;
         int viewType = getItemViewType(position);
 
-        switch (viewType){
+        switch (viewType) {
             case VIEW_TYPE_TODAY:
-                weatherImageId = ToolUtils.getBigWeatherImage(weatherId);
+                weatherImageId = ToolUtils.getBigWeatherImage(mCursor.getInt(WeatherFragment.COLUMN_WEATHER_ID));
                 holder.cityName.setText(WeatherJsonUtils.getCityName());
                 break;
             case VIEW_TYPE_FUTURE_DAY:
-                weatherImageId = ToolUtils.getSmallWeatherImage(weatherId);
+                weatherImageId = ToolUtils.getSmallWeatherImage(mCursor.getInt(WeatherFragment.COLUMN_WEATHER_ID));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid view type, value of " + viewType);
         }
 
         holder.weatherImage.setImageResource(weatherImageId); //Weather Icon
-        holder.weatherDesc.setText(weatherBean.getDesc()); //Weather Description
-        holder.lowTemp.setText(ToolUtils.formatTemperature(mContext,weatherBean.getMinTemp())); //Low temperature
-        holder.highTemp.setText(ToolUtils.formatTemperature(mContext,weatherBean.getMaxTemp()));//High temperature
-        holder.dateText.setText(weatherBean.getDate());//date
+        holder.weatherDesc.setText(mCursor.getString(WeatherFragment.COLUMN_DESC)); //Weather Description
+        holder.lowTemp.setText(ToolUtils.formatTemperature(mContext, mCursor.getDouble(WeatherFragment.MIN_TEMP))); //Low temperature
+        holder.highTemp.setText(ToolUtils.formatTemperature(mContext, mCursor.getDouble(WeatherFragment.MAX_TEMP)));//High temperature
+        String date = ToolUtils.getReadableDateString(mCursor.getLong(WeatherFragment.COLUMN_DATE));
+        holder.dateText.setText(date);//date
         SunLog.d(TAG, "BindView");
     }
 
@@ -98,12 +94,12 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
 
     @Override
     public int getItemCount() {
-        return mData != null ? mData.size() : 0;
+        return mCursor != null ? mCursor.getCount() : 0;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (mUseTodayLayout&&position==0){
+        if (mUseTodayLayout && position == 0) {
             return VIEW_TYPE_TODAY;
         } else {
             return VIEW_TYPE_FUTURE_DAY;

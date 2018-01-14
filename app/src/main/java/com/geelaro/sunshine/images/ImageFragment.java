@@ -1,6 +1,7 @@
 package com.geelaro.sunshine.images;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -68,9 +69,8 @@ public class ImageFragment extends Fragment implements ImageView, SwipeRefreshLa
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addOnScrollListener(mOnScrollListener);
 
-        SunLog.d(TAG, "Fragment:onCreateView");
         onRefresh();
-
+        SunLog.d(TAG,"onCreateView");
         return rootView;
     }
 
@@ -101,7 +101,6 @@ public class ImageFragment extends Fragment implements ImageView, SwipeRefreshLa
         mData.clear();
         mData.addAll(list);
         mImageAdapter.setData(mData);
-        SunLog.d(TAG, ": addImageData");
     }
 
     @Override

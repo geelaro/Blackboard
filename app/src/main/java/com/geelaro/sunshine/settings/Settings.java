@@ -1,8 +1,10 @@
 package com.geelaro.sunshine.settings;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.utils.SunshineApp;
 
 /**
@@ -34,6 +36,10 @@ public class Settings {
         }
         return mInstance;
 
+    }
+
+    public String getPreferredLocation(Context context){
+        return mPrefs.getString(LOCATION,context.getString(R.string.pref_location_default));
     }
 
     public String getString(String key, String value) {

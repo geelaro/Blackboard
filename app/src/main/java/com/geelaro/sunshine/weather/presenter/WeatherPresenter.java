@@ -25,9 +25,9 @@ import java.util.List;
  * Created by LEE on 2017/6/19.
  */
 
-public class WeatherPresenter implements WeatherContract.Presenter, WeatherModel.OnLoadWeatherListListener {
+public class WeatherPresenter implements WeatherContract.Presenter {
     private WeatherContract.WeatherView mView;
-    private WeatherContract.Model mModel;
+    private static WeatherContract.Model mModel;
     private final static String TAG = WeatherPresenter.class.getSimpleName();
 
     public WeatherPresenter(WeatherContract.WeatherView view) {
@@ -37,21 +37,14 @@ public class WeatherPresenter implements WeatherContract.Presenter, WeatherModel
 
     @Override
     public void loadWeatherList() {
-        mModel.loadWeather(this); //获取数据
+        mModel.loadWeather(); //获取数据
         SunLog.d(TAG, "loadWeatherList()");
     }
 
-    @Override
-    public void onSuccess(List<WeatherBean> list) {
-        mView.addWeatherData(list);
-        notifyWeather(SunshineApp.getContext(),list);
-        SunLog.d(TAG, "addWeatherList");
+    public static void syncData(){
+        mModel.loadWeather();
     }
 
-    @Override
-    public void onFailure(String msg, Exception e) {
-
-    }
     /** Notification **/
     private void notifyWeather(Context context, List<WeatherBean> list) {
 

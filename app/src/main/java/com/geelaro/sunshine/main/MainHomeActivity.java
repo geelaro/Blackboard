@@ -21,6 +21,7 @@ import com.geelaro.sunshine.news.widget.NewsFragment;
 import com.geelaro.sunshine.settings.SettingsActivity;
 import com.geelaro.sunshine.utils.LanguageUtils;
 import com.geelaro.sunshine.utils.ShowToast;
+import com.geelaro.sunshine.utils.SunLog;
 import com.geelaro.sunshine.weather.WeatherFragment;
 
 
@@ -62,7 +63,6 @@ public class MainHomeActivity extends AppCompatActivity
 //        switch2News();
 
     }
-
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);

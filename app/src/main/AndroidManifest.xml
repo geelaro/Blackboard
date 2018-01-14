@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <!-- <permission android:name="com.geelaro.sunshine.READ_WEATHER" android:protectionLevel="normal"/> -->
     <application
         android:name=".utils.SunshineApp"
         android:allowBackup="true"
@@ -32,18 +31,20 @@
             android:parentActivityName=".main.MainHomeActivity">
 
         </activity>
-
-        <!-- <provider -->
-        <!-- android:authorities="com.geelaro.sunshine" -->
-        <!-- android:name=".weather.model.data.WeatherProvider" -->
-        <!-- android:readPermission="com.geelaro.sunshine.READ_WEATHER" -->
-        <!-- android:exported="true"> -->
-        <!-- </provider> -->
-
-        <activity android:name=".settings.SettingsActivity"
+        <activity
+            android:name=".settings.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".main.MainHomeActivity">
         </activity>
+
+        <provider
+            android:name=".weather.model.data.WeatherProvider"
+            android:authorities="com.geelaro.sunshine"
+            android:exported="false"
+            android:readPermission="com.geelaro.sunshine.READ_WEATHER">
+        </provider>
+        <service android:name=".weather.model.sync.WeatherSyncService" />
+
     </application>
 
 </manifest>
