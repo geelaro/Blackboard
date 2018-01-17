@@ -1,4 +1,4 @@
-package com.geelaro.sunshine;
+package com.geelaro.sunshine.base;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,10 +8,12 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.beans.ImageBean;
 import com.geelaro.sunshine.images.ImageAdapter;
 import com.geelaro.sunshine.images.presenter.ImagePresenter;
@@ -25,6 +27,7 @@ import java.util.List;
  */
 
 public abstract class BaseListFragment extends Fragment{
+    private static final String TAG = BaseListFragment.class.getSimpleName();
     protected RecyclerView.Adapter mAdapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager manager;
@@ -64,5 +67,7 @@ public abstract class BaseListFragment extends Fragment{
 
         return rootView;
     }
+
+
 
 }

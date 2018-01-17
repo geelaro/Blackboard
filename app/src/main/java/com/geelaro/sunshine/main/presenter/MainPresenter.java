@@ -24,6 +24,9 @@ public class MainPresenter implements MainContract.Presenter {
             case R.id.nav_news:
                 mMainView.switch2News();
                 break;
+            case R.id.nav_movies:
+                mMainView.switch2Movies();
+                break;
             case R.id.nav_gallery:
                 mMainView.switch2Images();
                 break;

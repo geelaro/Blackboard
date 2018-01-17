@@ -99,7 +99,6 @@ public class ToolUtils {
     }
 
 
-
     /**
      * 获取当前设备屏幕宽度in pixel
      */
@@ -159,7 +158,12 @@ public class ToolUtils {
 
         return context.getString(R.string.format_temperature, temp);
     }
+
     /** **/
+
+    public static String formatScore(Context context, String score) {
+        return context.getString(R.string.format_score, score);
+    }
 
     public static int getSmallWeatherImage(int weatherId) {
         if (weatherId >= 200 && weatherId <= 232) {

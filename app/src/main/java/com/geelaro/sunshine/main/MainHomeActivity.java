@@ -17,6 +17,7 @@ import com.geelaro.sunshine.about.AboutFragment;
 import com.geelaro.sunshine.images.ImageFragment;
 import com.geelaro.sunshine.main.contract.MainContract;
 import com.geelaro.sunshine.main.presenter.MainPresenter;
+import com.geelaro.sunshine.movies.MoviesFragment;
 import com.geelaro.sunshine.news.widget.NewsFragment;
 import com.geelaro.sunshine.settings.SettingsActivity;
 import com.geelaro.sunshine.utils.LanguageUtils;
@@ -149,6 +150,14 @@ public class MainHomeActivity extends AppCompatActivity
                 .commit();
         toolbar.setTitle(R.string.fragment_news);
 
+    }
+
+    @Override
+    public void switch2Movies() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container,new MoviesFragment())
+                .commit();
+        toolbar.setTitle(R.string.movie_top250);
     }
 
     @Override

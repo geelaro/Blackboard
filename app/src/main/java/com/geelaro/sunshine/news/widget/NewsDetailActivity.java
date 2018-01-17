@@ -15,6 +15,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.geelaro.sunshine.R;
+import com.geelaro.sunshine.base.BaseWebViewActivity;
 import com.geelaro.sunshine.beans.NewsBean;
 
 /**
@@ -22,130 +23,22 @@ import com.geelaro.sunshine.beans.NewsBean;
  * 新闻详情页
  */
 
-public class NewsDetailActivity extends AppCompatActivity {
+public class NewsDetailActivity extends BaseWebViewActivity {
     private final static String TAG = NewsDetailActivity.class.getSimpleName();  //TAG
-    //
-    private Toolbar mToolbar;
-    private ProgressBar mProgressBar;
-    private WebView mWebView;
-    //
-    private String URL = null;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_newsdetail);
-        mToolbar = (Toolbar)findViewById(R.id.detail_bar);
-        mProgressBar = (ProgressBar)findViewById(R.id.progressbar);
-        mWebView = (WebView) findViewById(R.id.detail_content);
-        //URL
+    protected String getDetailUrl() {
         NewsBean newsBean = (NewsBean) getIntent().getSerializableExtra("news");
-        URL = newsBean.getDetailUrl();
-        //Toolbar
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mToolbar.setNavigationIcon(R.drawable.back);
-        mToolbar.setTitleTextAppearance(this,R.style.ToolBarTextAppearance);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        return newsBean.getDetailUrl();
+    }
+
+    @Override
+    protected void loadData(final String data) {
+        mWebView.post(new Runnable() {
             @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-        initWebSettings();
-
-        mWebView.loadUrl(URL);
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (mWebView!=null) mWebView.onResume();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mWebView!=null) mWebView.destroy();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (mWebView!=null) mWebView.onPause();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.news_detail,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.news_share:
-                //系统分享
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, URL);
-                startActivity(Intent.createChooser(intent, getTitle()));
-                return true;
-
-            case R.id.refresh:
-                mWebView.reload();
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    //WebView init
-    private void initWebSettings() {
-        WebSettings settings = mWebView.getSettings();
-        //设置AppCache存储路径
-        String cacheDirPath = getApplicationContext().getFilesDir().getAbsolutePath()+"cache/";
-        settings.setAppCachePath(cacheDirPath);
-        //存储大小
-        settings.setAppCacheMaxSize(20*1024*1024);
-        //开启Application Cache存储机制
-        settings.setAppCacheEnabled(true);
-
-        settings.setJavaScriptEnabled(true); //开启js,即开启IndexedDB
-        settings.setDomStorageEnabled(true);//开启Dom Storage缓存机制
-
-        settings.setLoadWithOverviewMode(true);
-        settings.setSupportZoom(true);
-        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        mWebView.setWebChromeClient(new WebChromeClient(){
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                super.onProgressChanged(view, newProgress);
-                mProgressBar.setProgress(newProgress);
-                if (newProgress==100){
-                    mProgressBar.setVisibility(View.GONE);
-                }else {
-                    mProgressBar.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onReceivedTitle(WebView view, String title) {
-                super.onReceivedTitle(view, title);
-                setTitle(title);
-            }
-        });
-
-        mWebView.setWebViewClient(new WebViewClient(){
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (url != null) view.loadUrl(url);
-                return true;
+            public void run() {
+                mWebView.loadUrl(data);
             }
         });
     }
-
-
 }

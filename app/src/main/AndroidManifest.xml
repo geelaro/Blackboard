@@ -29,7 +29,9 @@
         <activity
             android:name=".news.widget.NewsDetailActivity"
             android:parentActivityName=".main.MainHomeActivity">
-
+        </activity>
+        <activity android:name=".movies.MovieDetailActivity"
+            android:parentActivityName=".main.MainHomeActivity">
         </activity>
         <activity
             android:name=".settings.SettingsActivity"

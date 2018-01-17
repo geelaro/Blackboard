@@ -54,7 +54,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemViewHolder
         holder.newsTitle.setText(newsBean.getTitle());
         holder.newsSource.setText(newsBean.getSource());
         holder.newsMtime.setText(newsBean.getMtime());
-        SunLog.d(TAG,"onBindViewHolder");
 
     }
 

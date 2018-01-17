@@ -23,8 +23,12 @@ public class SunApi {
     public static final String NEWS_COMMON_URL = "http://c.m.163.com/nc/article/list/";
     //
     public static final int PAGE_NUM = 10;
-    private static final int PAGE_SIZE = 20;
-    public static final String END_URL =  "-" + PAGE_SIZE + ".html";
+    private static final int NEWS_PAGE_SIZE = 20;
+    public static final String END_URL =  "-" + NEWS_PAGE_SIZE + ".html";
+
+    //douban Top 250
+    public static final String MOVIE_TOP_250 = "http://api.douban.com/v2/movie/top250";
+    private static final int MOVIE_PAGE_SIZE = 25;
 
 
 }

@@ -17,6 +17,7 @@
     <!--Fragment Names-->
     <string name="fragment_weather">Weather</string>
     <string name="fragment_news">News</string>
+    <string name="fragment_movies">Movie</string>
     <string name="fragment_images">Image</string>
     <string name="fragment_me">About</string>
 
@@ -74,4 +75,9 @@
         <item>0</item>
         <item>1</item>
     </string-array>
+
+    <!-- Movies -->
+    <string name="format_score">Score: <xliff:g id="condition">%1$s</xliff:g></string>
+    <string name="movie_top250">Douban Top 250</string>
+    <string name="nav_desc">不穿冲锋衣的码农</string>
 </resources>

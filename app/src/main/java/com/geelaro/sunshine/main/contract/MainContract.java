@@ -13,6 +13,8 @@ public interface MainContract {
 
         void switch2News();
 
+        void switch2Movies();
+
         void switch2Images();
 
         void switch2About();
