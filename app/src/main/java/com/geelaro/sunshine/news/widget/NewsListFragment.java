@@ -94,7 +94,7 @@ public class NewsListFragment extends Fragment implements NewsView, SwipeRefresh
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
-            if (newState == RecyclerView.SCROLL_STATE_IDLE &&
+            if (newState == RecyclerView.SCROLL_STATE_IDLE&&
                     lastVisibleItem + 1 == mNewsAdapter.getItemCount()) {
                 //加载更多
 //                mPresenter.loadNewsList(mType, pageIndex + Urls.PAGE_NUM);

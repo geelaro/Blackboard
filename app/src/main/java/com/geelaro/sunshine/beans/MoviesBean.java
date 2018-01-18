@@ -8,11 +8,18 @@ import java.io.Serializable;
 
 public class MoviesBean implements Serializable {
 
+    private int movieNo;
     private String titile;
     private String imgaeUri;
     private String year;
     private String alt;
     private String score;
+
+
+
+    public void setMovieNo(int movieNo) {
+        this.movieNo = movieNo;
+    }
 
     public void setTitile(String titile) {
         this.titile = titile;
@@ -34,6 +41,9 @@ public class MoviesBean implements Serializable {
         this.alt = alt;
     }
 
+    public int getMovieNo(){
+        return movieNo;
+    }
     public String getTitile() {
         return titile;
     }

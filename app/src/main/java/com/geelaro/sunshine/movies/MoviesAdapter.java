@@ -16,6 +16,8 @@ import com.geelaro.sunshine.images.ImageGlide;
 import com.geelaro.sunshine.main.MainHomeActivity;
 import com.geelaro.sunshine.utils.ToolUtils;
 
+import org.w3c.dom.Text;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ItemViewHo
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_movie, parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_movie, parent, false);
         ItemViewHolder viewHolder = new ItemViewHolder(view);
         return viewHolder;
     }
@@ -52,6 +54,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ItemViewHo
             return;
         }
         ImageGlide.display(mContext, moviesBean.getImgaeUri(), holder.movieImage);
+        holder.movieNo.setText("NO." + moviesBean.getMovieNo());
         holder.movieTitle.setText(moviesBean.getTitile());
         holder.movieDate.setText(moviesBean.getYear());
         holder.movieScore.setText(ToolUtils.formatScore(mContext, moviesBean.getScore()));
@@ -60,7 +63,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ItemViewHo
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext,MovieDetailActivity.class);
+                Intent intent = new Intent(mContext, MovieDetailActivity.class);
                 intent.putExtra("movies", URL);
                 mContext.startActivity(intent);
             }
@@ -78,11 +81,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ItemViewHo
         private TextView movieTitle;
         private TextView movieDate;
         private TextView movieScore;
+        private TextView movieNo;
         private View mView;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
+            movieNo = (TextView) mView.findViewById(R.id.movie_num);
             movieImage = (ImageView) mView.findViewById(R.id.movie_image);
             movieTitle = (TextView) mView.findViewById(R.id.movie_title);
             movieDate = (TextView) mView.findViewById(R.id.movie_date);

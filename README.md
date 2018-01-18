@@ -8,11 +8,11 @@
 
 ### Screenshot
 
-<a href="screenshot/weather.png"><img src="screenshot/weather.png" width="40%"/></a> <a href="screenshot/news.png"><img src="screenshot/news.png" width="40%"/></a>
+<a href="screenshot/weather.png"><img src="screenshot/weather.png" width="30%"/></a> <a href="screenshot/news.png"><img src="screenshot/news.png" width="30%"/></a>
 
-<a href="screenshot/images.png"><img src="screenshot/images.png" width="40%"/></a> <a href="screenshot/nav.png"><img src="screenshot/nav.png" width="40%"/></a>
+<a href="screenshot/images.png"><img src="screenshot/images.png" width="30%"/></a> <a href="screenshot/nav.png"><img src="screenshot/nav.png" width="30%"/></a>
 
-<a href="screenshot/movies.png"><img src="screenshot/movies.png" width="40%"/></a> <a href="screenshot/settings.png"><img src="screenshot/settings.png" width="40%"/></a>
+<a href="screenshot/movies.png"><img src="screenshot/movies.png" width="30%"/></a> <a href="screenshot/settings.png"><img src="screenshot/settings.png" width="30%"/></a>
 
 
 ### 数据源

@@ -5,5 +5,5 @@ package com.geelaro.sunshine.movies.presenter;
  */
 
 public interface MoviePresenter {
-    void loadData();
+    void loadData(int start);
 }

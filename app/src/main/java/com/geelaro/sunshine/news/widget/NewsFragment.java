@@ -65,9 +65,9 @@ public class NewsFragment extends Fragment {
      */
     private void setTabsValue() {
         // 设置Tab是自动填充满屏幕的
-//        mPageTabs.setShouldExpand(true);
+        mPageTabs.setShouldExpand(true);
         // 设置Tab的分割线是透明的
-//        mPageTabs.setDividerColor(Color.TRANSPARENT);
+        mPageTabs.setDividerColor(Color.TRANSPARENT);
         // 设置Tab底部线的高度
         mPageTabs.setUnderlineHeight((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 1, dm));
@@ -79,6 +79,8 @@ public class NewsFragment extends Fragment {
                 TypedValue.COMPLEX_UNIT_SP, 14, dm));
         // 设置Tab Indicator的颜色
         mPageTabs.setIndicatorColor(Color.parseColor("#3278D3"));
+        //选中时的颜色
+        mPageTabs.setSelectedTextColorResource(R.color.colorPrimaryDark);
         // 取消点击Tab时的背景色
         mPageTabs.setTabBackground(0);
     }

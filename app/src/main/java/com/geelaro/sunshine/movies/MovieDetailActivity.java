@@ -1,7 +1,6 @@
 package com.geelaro.sunshine.movies;
 
 import com.geelaro.sunshine.base.BaseWebViewActivity;
-import com.geelaro.sunshine.beans.MoviesBean;
 
 /**
  * Created by geelaro on 2018/1/17.

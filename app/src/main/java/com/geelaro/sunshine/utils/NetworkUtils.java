@@ -59,4 +59,19 @@ public class NetworkUtils {
 
         return builtUri;
     }
+
+    /**
+     * 豆瓣电影TOP250
+     */
+
+    public static String getTop250URL(int startNum,int countNum){
+        final String START = "start";
+        final String COUNT = "count";
+
+        Uri topUri = Uri.parse(SunApi.MOVIE_TOP_250).buildUpon()
+                .appendQueryParameter(START,Integer.toString(startNum))
+                .appendQueryParameter(COUNT,Integer.toString(countNum))
+                .build();
+        return topUri.toString();
+    }
 }

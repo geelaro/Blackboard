@@ -28,7 +28,7 @@ public class SunApi {
 
     //douban Top 250
     public static final String MOVIE_TOP_250 = "http://api.douban.com/v2/movie/top250";
-    private static final int MOVIE_PAGE_SIZE = 25;
+    public static final int MOVIE_SUB_COUNT = 50;
 
 
 }

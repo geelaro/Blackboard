@@ -17,6 +17,7 @@ import com.geelaro.sunshine.R;
 import com.geelaro.sunshine.beans.ImageBean;
 import com.geelaro.sunshine.images.ImageAdapter;
 import com.geelaro.sunshine.images.presenter.ImagePresenter;
+import com.geelaro.sunshine.utils.ShowToast;
 import com.geelaro.sunshine.utils.SunLog;
 import com.geelaro.sunshine.utils.SunshineApp;
 
@@ -33,8 +34,12 @@ public abstract class BaseListFragment extends Fragment{
     private RecyclerView.LayoutManager manager;
     protected SwipeRefreshLayout mRefreshLayout;
 
+    private static boolean isLoadingMoreData = false;
+
+
     protected abstract RecyclerView.Adapter bindAdapter();
     protected abstract void loadFromNet();
+    protected abstract void loadingMoreData();
 
 
     @Nullable
@@ -62,11 +67,34 @@ public abstract class BaseListFragment extends Fragment{
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addOnScrollListener(scrollListener);
 
         loadFromNet();
 
         return rootView;
     }
+
+    private RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            if (!isLoadingMoreData&&!recyclerView.canScrollVertically(1)){
+                //手机向上不能滑动,到达底部
+                isLoadingMoreData = true;
+                Log.d("1122", "onScrollStateChanged: "+recyclerView.canScrollVertically(1));
+                ShowToast.Short("下拉加载更多！");
+//                loadingMoreData();
+            } else {
+                isLoadingMoreData = false;
+            }
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+                if ()
+        }
+    };
 
 
 

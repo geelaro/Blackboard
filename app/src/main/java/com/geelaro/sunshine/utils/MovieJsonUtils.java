@@ -24,7 +24,7 @@ public class MovieJsonUtils {
     private static final String MOV_IMAGE_MEDIUM = "small";
 
 
-    public static List<MoviesBean> getMovieBean(String jsonStr){
+    public static List<MoviesBean> getMovieBean(String jsonStr,int start){
         List<MoviesBean> moviesBeanList = new ArrayList<>();
 
         try {
@@ -46,6 +46,7 @@ public class MovieJsonUtils {
                 String imageUri = imageObj.getString(MOV_IMAGE_MEDIUM);
 
                 MoviesBean moviesBean = new MoviesBean();
+                moviesBean.setMovieNo(start+i+1);
                 moviesBean.setTitile(title);
                 moviesBean.setYear(year);
                 moviesBean.setScore(average);

@@ -6,5 +6,5 @@ package com.geelaro.sunshine.movies.model;
 
 public interface MovieModel {
 
-    void loadDataFromNet(MovieModelImpl.OnLoadMovieListener listener);
+    void loadDataFromNet(MovieModelImpl.OnLoadMovieListener listener,int start);
 }

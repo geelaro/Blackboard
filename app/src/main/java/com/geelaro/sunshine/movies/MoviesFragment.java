@@ -1,5 +1,6 @@
 package com.geelaro.sunshine.movies;
 
+import android.app.admin.SecurityLog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import com.geelaro.sunshine.beans.NewsBean;
 import com.geelaro.sunshine.movies.presenter.MoviePresenter;
 import com.geelaro.sunshine.movies.presenter.MoviePresenterImpl;
 import com.geelaro.sunshine.movies.view.MovieView;
+import com.geelaro.sunshine.utils.SunApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,33 +23,44 @@ import java.util.List;
 
 public class MoviesFragment extends BaseListFragment implements MovieView {
     private static final String TAG = MoviesFragment.class.getSimpleName();
-    private MoviePresenter mMoviePresenter = new MoviePresenterImpl(this);;
+    private MoviePresenter mMoviePresenter = new MoviePresenterImpl(this);
+    ;
     private List<MoviesBean> mData;
     private MoviesAdapter mMoviesAdapter;
-
+    private static int start = 0;
 
 
     @Override
     public RecyclerView.Adapter bindAdapter() {
         mMoviesAdapter = new MoviesAdapter(getActivity());
-        Log.d(TAG, "bindAdapter: ");
         return mMoviesAdapter;
     }
 
     @Override
     protected void loadFromNet() {
-        mMoviePresenter.loadData();
+        int start = 0;
+        mMoviePresenter.loadData(start);
+    }
+
+    @Override
+    protected void loadingMoreData() {
+        mMoviePresenter.loadData(start);
     }
 
 
     @Override
     public void addData(List<MoviesBean> list) {
-        if (mData==null){
+        if (mData == null) {
             mData = new ArrayList<>();
         }
         mData.clear();
         mData.addAll(list);
-        mMoviesAdapter.setData(mData);
+        if (start == 0) {
+            mMoviesAdapter.setData(mData);
+        } else mMoviesAdapter.notifyDataSetChanged();
+
+//        start += SunApi.MOVIE_SUB_COUNT;
+
     }
 
     @Override

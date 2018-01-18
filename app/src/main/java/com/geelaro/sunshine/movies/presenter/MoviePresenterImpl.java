@@ -20,11 +20,11 @@ public class MoviePresenterImpl implements MoviePresenter{
         mModel = new MovieModelImpl();
     }
     @Override
-    public void loadData() {
+    public void loadData(final int start) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                mModel.loadDataFromNet(listener);
+                mModel.loadDataFromNet(listener,start);
             }
         }).start();
     }
@@ -41,5 +41,6 @@ public class MoviePresenterImpl implements MoviePresenter{
             mMovieView.hideProgress();
         }
     };
+
 
 }
