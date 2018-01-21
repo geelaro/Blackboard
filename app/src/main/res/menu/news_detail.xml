@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/refresh"
+        android:icon="@drawable/ic_refresh"
+        android:title="@string/action_refresh"
+        app:showAsAction="always" />
+
     <item android:id="@+id/news_share"
         android:title="@string/news_share"
         android:icon="@drawable/share"
         app:showAsAction="always" />
-        <!--app:actionProviderClass="android.support.v7.widget.ShareActionProvider"-->
-
-    <item
-        android:id="@+id/refresh"
-        android:icon="@drawable/ic_info_black_24dp"
-        android:title="@string/action_refresh"
-        app:showAsAction="never" />
+        <!--app:actionProviderClass="android.support.v7.widget.ShareActionProvider" -->
 
 </menu>
