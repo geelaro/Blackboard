@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
-    <string name="app_name">SunShinePro</string>
+    <string name="app_name">黑板报</string>
 
     <string name="author_name">Geelaro</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -38,8 +38,8 @@
     <string name="format_temperature"><xliff:g id="temp">%1.0f</xliff:g>\u00B0</string>
 
     <!--About Me -->
-    <string name="app_description">SunshinePro是一个集天气、新闻、图片的聚合App。</string>
-    <string name="app_url">项目地址：https://github.com/geelaro/SunshinePro</string>
+    <string name="app_description">Blackboard是一个集天气、新闻、图片的聚合信息App,是教室后排的黑板报。</string>
+    <string name="app_url">项目地址：https://github.com/geelaro/blackborad</string>
     <string name="author">作者：Geelaro Li</string>>
     <string name="app_email">邮箱：geelaro.li@gmail.com</string>
 
