@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.geelaro.sunshine">
+    package="com.geelaro.sunboard">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -10,14 +10,14 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".utils.SunshineApp"
+        android:name="com.geelaro.sunboard.utils.SunshineApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".main.MainHomeActivity"
+            android:name="com.geelaro.sunboard.main.MainHomeActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask">
             <intent-filter>
@@ -27,25 +27,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".news.widget.NewsDetailActivity"
-            android:parentActivityName=".main.MainHomeActivity">
+            android:name="com.geelaro.sunboard.news.widget.NewsDetailActivity"
+            android:parentActivityName="com.geelaro.sunboard.main.MainHomeActivity">
         </activity>
-        <activity android:name=".movies.MovieDetailActivity"
-            android:parentActivityName=".main.MainHomeActivity">
+        <activity android:name="com.geelaro.sunboard.movies.MovieDetailActivity"
+            android:parentActivityName="com.geelaro.sunboard.main.MainHomeActivity">
         </activity>
         <activity
-            android:name=".settings.SettingsActivity"
+            android:name="com.geelaro.sunboard.settings.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".main.MainHomeActivity">
+            android:parentActivityName="com.geelaro.sunboard.main.MainHomeActivity">
         </activity>
 
         <provider
-            android:name=".weather.model.data.WeatherProvider"
-            android:authorities="com.geelaro.sunshine"
+            android:name="com.geelaro.sunboard.weather.model.data.WeatherProvider"
+            android:authorities="com.geelaro.sunboard"
             android:exported="false"
             android:readPermission="com.geelaro.sunshine.READ_WEATHER">
         </provider>
-        <service android:name=".weather.model.sync.WeatherSyncService" />
+        <service android:name="com.geelaro.sunboard.weather.model.sync.WeatherSyncService" />
 
     </application>
 
