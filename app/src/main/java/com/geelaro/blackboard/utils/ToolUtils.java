@@ -134,7 +134,7 @@ public class ToolUtils {
     public static int px2dp(Context context, int value) {
         final float scale = context.getResources().getDisplayMetrics().density;
         SunLog.d("Density", ":" + scale);
-        return (int) (value / scale);
+        return (int) (value / scale+0.5f);
     }
 
     /**
@@ -142,7 +142,7 @@ public class ToolUtils {
      **/
     public static int dp2px(Context context, int value) {
         final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (value * scale);
+        return (int) (value * scale+0.5f);
     }
 
 

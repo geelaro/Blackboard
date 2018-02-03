@@ -1,4 +1,4 @@
-package com.geelaro.blackboard.images;
+package com.geelaro.blackboard.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.geelaro.blackboard.R;
 import com.geelaro.blackboard.base.beans.ImageBean;
+import com.geelaro.blackboard.images.ImageGlide;
 import com.geelaro.blackboard.utils.SunLog;
 import com.geelaro.blackboard.utils.ToolUtils;
 
@@ -52,7 +53,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ItemViewHold
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_image, parent, false);
         ItemViewHolder viewHolder = new ItemViewHolder(view);
-        SunLog.d(TAG, "onCreateViewHolder");
 
         return viewHolder;
     }

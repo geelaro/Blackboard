@@ -3,7 +3,7 @@ package com.geelaro.blackboard.weather.model;
 import com.geelaro.blackboard.utils.NetworkUtils;
 import com.geelaro.blackboard.utils.OkHttpUtils;
 import com.geelaro.blackboard.utils.SunLog;
-import com.geelaro.blackboard.weather.WeatherJsonUtils;
+import com.geelaro.blackboard.utils.parser.WeatherJsonUtils;
 import com.geelaro.blackboard.weather.contract.WeatherContract;
 
 import org.json.JSONException;

@@ -17,7 +17,8 @@ import com.geelaro.blackboard.about.AboutFragment;
 import com.geelaro.blackboard.images.ImageFragment;
 import com.geelaro.blackboard.main.contract.MainContract;
 import com.geelaro.blackboard.main.presenter.MainPresenter;
-import com.geelaro.blackboard.movies.MoviesFragment;
+import com.geelaro.blackboard.movies.MovieTop250Fragment;
+import com.geelaro.blackboard.movies.MoviewFragment;
 import com.geelaro.blackboard.news.widget.NewsFragment;
 import com.geelaro.blackboard.settings.SettingsActivity;
 import com.geelaro.blackboard.utils.LanguageUtils;
@@ -154,9 +155,9 @@ public class MainHomeActivity extends AppCompatActivity
     @Override
     public void switch2Movies() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container,new MoviesFragment())
+                .replace(R.id.container,new MoviewFragment())
                 .commit();
-        toolbar.setTitle(R.string.movie_top250);
+        toolbar.setTitle(R.string.fragment_movies);
     }
 
     @Override

@@ -64,11 +64,11 @@ public class NetworkUtils {
      * 豆瓣电影TOP250
      */
 
-    public static String getTop250URL(int startNum,int countNum){
+    public static String getMovieURL(String url, int startNum, int countNum){
         final String START = "start";
         final String COUNT = "count";
 
-        Uri topUri = Uri.parse(SunApi.MOVIE_TOP_250).buildUpon()
+        Uri topUri = Uri.parse(url).buildUpon()
                 .appendQueryParameter(START,Integer.toString(startNum))
                 .appendQueryParameter(COUNT,Integer.toString(countNum))
                 .build();

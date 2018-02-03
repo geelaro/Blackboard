@@ -1,4 +1,4 @@
-package com.geelaro.blackboard.weather;
+package com.geelaro.blackboard.adapter;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.geelaro.blackboard.R;
 import com.geelaro.blackboard.utils.SunLog;
 import com.geelaro.blackboard.utils.ToolUtils;
+import com.geelaro.blackboard.weather.WeatherFragment;
+import com.geelaro.blackboard.utils.parser.WeatherJsonUtils;
 
 /**
  * Created by geelaro on 2017/10/25.
@@ -30,7 +32,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
     public WeatherAdapter(Context context) {
         this.mContext = context;
         mUseTodayLayout = mContext.getResources().getBoolean(R.bool.use_today_layout);
-        SunLog.d(TAG, "WeatherAdapter Init.");
+        SunLog.i(TAG, "WeatherAdapter Init.");
     }
 
     public void swapCursor(Cursor cursor) {
@@ -81,7 +83,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ItemView
         holder.highTemp.setText(ToolUtils.formatTemperature(mContext, mCursor.getDouble(WeatherFragment.MAX_TEMP)));//High temperature
         String date = ToolUtils.getReadableDateString(mCursor.getLong(WeatherFragment.COLUMN_DATE));
         holder.dateText.setText(date);//date
-        SunLog.d(TAG, "BindView");
+
     }
 
     @Override

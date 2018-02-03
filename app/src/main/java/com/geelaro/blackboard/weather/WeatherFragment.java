@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.geelaro.blackboard.R;
+import com.geelaro.blackboard.adapter.WeatherAdapter;
 import com.geelaro.blackboard.base.beans.WeatherBean;
 import com.geelaro.blackboard.settings.Settings;
 import com.geelaro.blackboard.utils.ShowToast;
@@ -50,12 +51,12 @@ public class WeatherFragment extends Fragment implements WeatherContract.Weather
             WeatherTable.COLUMN_MAX_TEMP
     };
 
-    static final int WEATHER_ID = 0;
-    static final int COLUMN_DATE = 1;
-    static final int COLUMN_DESC = 2;
-    static final int COLUMN_WEATHER_ID = 3;
-    static final int MIN_TEMP = 4;
-    static final int MAX_TEMP = 5;
+    public static final int WEATHER_ID = 0;
+    public static final int COLUMN_DATE = 1;
+    public static final int COLUMN_DESC = 2;
+    public static final int COLUMN_WEATHER_ID = 3;
+    public static final int MIN_TEMP = 4;
+    public static final int MAX_TEMP = 5;
 
 
     @Override

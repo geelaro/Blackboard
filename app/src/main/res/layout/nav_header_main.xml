@@ -28,6 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="4dp"
-        android:text="@string/nav_desc" />
+        android:text="@string/navigation_desc" />
 
 </LinearLayout>

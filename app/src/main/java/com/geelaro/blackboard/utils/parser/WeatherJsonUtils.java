@@ -1,4 +1,4 @@
-package com.geelaro.blackboard.weather;
+package com.geelaro.blackboard.utils.parser;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -137,22 +137,26 @@ public class WeatherJsonUtils {
                 new String[]{locationSettings},
                 null
         );
-        if (locationCursor.moveToFirst()) {
-            int index = locationCursor.getColumnIndex(LocationTable._ID);
-            locationId = locationCursor.getLong(index);
-        } else {
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(LocationTable.COLUMN_LOCATION_SETTING, locationSettings);
-            contentValues.put(LocationTable.COLUMN_CITY_NAME, cityName);
+        if (locationCursor != null) {
+            if (locationCursor.moveToFirst()) {
+                int index = locationCursor.getColumnIndex(LocationTable._ID);
+                locationId = locationCursor.getLong(index);
+            } else {
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(LocationTable.COLUMN_LOCATION_SETTING, locationSettings);
+                contentValues.put(LocationTable.COLUMN_CITY_NAME, cityName);
 
-            Uri uri = context.getContentResolver().insert(LocationTable.CONTENT_URI, contentValues);
+                Uri uri = context.getContentResolver().insert(LocationTable.CONTENT_URI, contentValues);
 
-            locationId = ContentUris.parseId(uri);
+                locationId = ContentUris.parseId(uri);
+            }
+
+
+            locationCursor.close();
+
+            return locationId;
         }
-
-        locationCursor.close();
-
-        return locationId;
+        return -1;
     }
 
 

@@ -6,5 +6,5 @@ package com.geelaro.blackboard.movies.model;
 
 public interface MovieModel {
 
-    void loadDataFromNet(MovieModelImpl.OnLoadMovieListener listener,int start);
+    void loadDataFromNet(MovieModelImpl.OnLoadMovieListener listener,String url,int start,int count);
 }

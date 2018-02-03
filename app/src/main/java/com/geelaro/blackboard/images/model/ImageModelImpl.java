@@ -1,7 +1,7 @@
 package com.geelaro.blackboard.images.model;
 
 import com.geelaro.blackboard.base.beans.ImageBean;
-import com.geelaro.blackboard.utils.ImageJsonUtils;
+import com.geelaro.blackboard.utils.parser.ImageJsonUtils;
 import com.geelaro.blackboard.utils.OkHttpUtils;
 import com.geelaro.blackboard.utils.SunApi;
 

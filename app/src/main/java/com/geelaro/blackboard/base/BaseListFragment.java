@@ -1,6 +1,7 @@
 package com.geelaro.blackboard.base;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -22,16 +23,18 @@ import com.geelaro.blackboard.utils.ShowToast;
 public abstract class BaseListFragment extends Fragment{
     private static final String TAG = BaseListFragment.class.getSimpleName();
     protected RecyclerView.Adapter mAdapter;
-    private RecyclerView recyclerView;
+    protected RecyclerView recyclerView;
     private RecyclerView.LayoutManager manager;
     protected SwipeRefreshLayout mRefreshLayout;
 
-    private static boolean isLoadingMoreData = false;
+    public static boolean isLoadMore = false;
 
 
     protected abstract RecyclerView.Adapter bindAdapter();
     protected abstract void loadFromNet();
     protected abstract void loadingMoreData();
+    protected abstract void setScrollListener();
+    protected abstract RecyclerView.LayoutManager getLayoutManager();
 
 
     @Nullable
@@ -42,7 +45,7 @@ public abstract class BaseListFragment extends Fragment{
 
         mAdapter = bindAdapter();
 
-        manager = new LinearLayoutManager(getActivity());
+        manager = getLayoutManager();
         // SwipeRefreshLayout
         mRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.common_refresh);
         mRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark);
@@ -59,34 +62,13 @@ public abstract class BaseListFragment extends Fragment{
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addOnScrollListener(scrollListener);
+        setScrollListener();
+
 
         loadFromNet();
 
         return rootView;
     }
-
-    private RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {
-        @Override
-        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-            super.onScrollStateChanged(recyclerView, newState);
-            if (!isLoadingMoreData&&!recyclerView.canScrollVertically(1)){
-                //手机向上不能滑动,到达底部
-                isLoadingMoreData = true;
-                Log.d("1122", "onScrollStateChanged: "+recyclerView.canScrollVertically(1));
-                ShowToast.Short("下拉加载更多！");
-//                loadingMoreData();
-            } else {
-                isLoadingMoreData = false;
-            }
-        }
-
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
-        }
-    };
-
 
 
 }

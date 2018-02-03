@@ -16,7 +16,7 @@ public class WeatherContract {
 
     // The "Content authority" is a name for the entire content provider, similar to the
 
-    public static final String CONTENT_AUTHORITY = "com.geelaro.sunshine";
+    public static final String CONTENT_AUTHORITY = "com.geelaro.blackboard";
 
     // Use CONTENT_AUTHORITY to create the base of all URI's which apps will use to contact
     // the content provider.

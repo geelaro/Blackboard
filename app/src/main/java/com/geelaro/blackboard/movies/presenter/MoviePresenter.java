@@ -5,5 +5,6 @@ package com.geelaro.blackboard.movies.presenter;
  */
 
 public interface MoviePresenter {
-    void loadData(int start);
+    void getMovieTop250(int start,int count);
+    void getMovieLive(int start,int count);
 }

@@ -43,7 +43,7 @@
             android:name="com.geelaro.blackboard.weather.model.data.WeatherProvider"
             android:authorities="com.geelaro.blackboard"
             android:exported="false"
-            android:readPermission="com.geelaro.sunshine.READ_WEATHER">
+            android:readPermission="com.geelaro.blackboard.READ_WEATHER">
         </provider>
         <service android:name="com.geelaro.blackboard.weather.model.sync.WeatherSyncService" />
 

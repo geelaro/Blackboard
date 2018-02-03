@@ -1,4 +1,4 @@
-package com.geelaro.blackboard.news;
+package com.geelaro.blackboard.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

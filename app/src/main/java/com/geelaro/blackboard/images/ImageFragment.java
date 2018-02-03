@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.geelaro.blackboard.R;
+import com.geelaro.blackboard.adapter.ImageAdapter;
 import com.geelaro.blackboard.base.beans.ImageBean;
 import com.geelaro.blackboard.images.presenter.ImagePresenter;
 import com.geelaro.blackboard.images.presenter.ImagePresenterImpl;

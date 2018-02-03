@@ -1,6 +1,7 @@
 package com.geelaro.blackboard.images;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -24,5 +25,6 @@ public class ImageGlide {
                 .placeholder(R.drawable.ic_image_loading)
                 .error(R.drawable.ic_image_loadfail)
                 .into(imageView);
+        Log.d("ImageGlide", "display: "+ImageGlide.class.hashCode());
     }
 }

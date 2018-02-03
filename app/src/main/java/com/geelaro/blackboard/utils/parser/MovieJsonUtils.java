@@ -1,4 +1,6 @@
-package com.geelaro.blackboard.utils;
+package com.geelaro.blackboard.utils.parser;
+
+import android.util.Log;
 
 import com.geelaro.blackboard.base.beans.MoviesBean;
 
@@ -21,7 +23,7 @@ public class MovieJsonUtils {
     private static final String MOV_YEAR = "year";
     private static final String MOV_ALT = "alt";
     private static final String MOV_IMAGES = "images";
-    private static final String MOV_IMAGE_MEDIUM = "small";
+    private static final String MOV_IMAGE_MEDIUM = "medium";
 
 
     public static List<MoviesBean> getMovieBean(String jsonStr,int start){

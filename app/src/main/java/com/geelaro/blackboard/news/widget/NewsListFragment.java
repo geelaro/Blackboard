@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.geelaro.blackboard.R;
 import com.geelaro.blackboard.base.beans.NewsBean;
-import com.geelaro.blackboard.news.NewsAdapter;
+import com.geelaro.blackboard.adapter.NewsAdapter;
 import com.geelaro.blackboard.news.presenter.NewsPresenter;
 import com.geelaro.blackboard.news.presenter.NewsPresenterImpl;
 import com.geelaro.blackboard.news.view.NewsView;

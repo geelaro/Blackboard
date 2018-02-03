@@ -1,6 +1,8 @@
-package com.geelaro.blackboard.utils;
+package com.geelaro.blackboard.utils.parser;
 
 import com.geelaro.blackboard.base.beans.ImageBean;
+import com.geelaro.blackboard.utils.JsonUtils;
+import com.geelaro.blackboard.utils.SunLog;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -18,7 +20,6 @@ public class ImageJsonUtils {
 
     public static List<ImageBean> getImageBean(String res) {
         //直接解析成一个List
-//        List<ImageBean> imageBeanList = gson.fromJson(res, new TypeToken<List<ImageBean>>(){}.getType());
         List<ImageBean> imageBeanList = new ArrayList<>();
 
         try {
@@ -27,13 +28,6 @@ public class ImageJsonUtils {
             for (JsonElement image : jsonArray) {
                 ImageBean news = JsonUtils.deserialize((JsonObject) image, ImageBean.class);
                 imageBeanList.add(news);
-//            JSONArray jsonArray = new JSONArray(res);
-//            for (int i =0;i<jsonArray.length();i++){
-//                JSONObject imageObj = jsonArray.getJSONObject(i);
-//                ImageBean news  = new ImageBean();
-//                news.setTitle(imageObj.getString("title"));
-//                news.setThumburl("thumburl");
-//                imageBeanList.add(news);
             }
 
         } catch (Exception e) {

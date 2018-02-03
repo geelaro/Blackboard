@@ -20,9 +20,9 @@
             android:textSize="@dimen/text_middle_size" />
 
         <TextView
-            android:layout_marginTop="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/text_margin"
             android:autoLink="web"
             android:text="@string/app_url"
             android:textSize="@dimen/text_middle_size" />

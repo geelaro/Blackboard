@@ -38,7 +38,7 @@
     <string name="format_temperature"><xliff:g id="temp">%1.0f</xliff:g>\u00B0</string>
 
     <!--About Me -->
-    <string name="app_description">Blackboard是一个集天气、新闻、图片的聚合信息App,是教室后排的黑板报。</string>
+    <string name="app_description">Blackboard是一个集天气、新闻、图片的聚合信息App，是教室后排的黑板报。</string>
     <string name="app_url">项目地址：https://github.com/geelaro/blackborad</string>
     <string name="author">作者：Geelaro Li</string>>
     <string name="app_email">邮箱：geelaro.li@gmail.com</string>
@@ -78,6 +78,7 @@
 
     <!-- Movies -->
     <string name="format_score">评分: <xliff:g id="condition">%1$s</xliff:g></string>
-    <string name="movie_top250">豆瓣电影Top250</string>
-    <string name="nav_desc">不穿冲锋衣的码农</string>
+    <string name="movie_top250">Top250</string>
+    <string name="movie_live">热映榜</string>
+    <string name="navigation_desc">不穿冲锋衣的码农</string>
 </resources>

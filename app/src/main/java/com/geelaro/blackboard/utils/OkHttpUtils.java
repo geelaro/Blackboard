@@ -2,6 +2,7 @@ package com.geelaro.blackboard.utils;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,6 +20,7 @@ import okhttp3.CacheControl;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -40,8 +42,8 @@ public class OkHttpUtils {
 
 
     private OkHttpUtils() {
-        File cacheFile = FileUtils.getCacheDir(BkApp.getContext(), "cache");
-        if (!cacheFile.exists()) {
+        File cacheFile = new File(BkApp.getContext().getCacheDir(), "response");
+        if (!cacheFile.exists()){
             cacheFile.mkdirs();
         }
         Cache cache = new Cache(cacheFile, CACHE_SIZE); //10Mb
@@ -50,12 +52,48 @@ public class OkHttpUtils {
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
+                .addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
                 .cache(cache) //设置cache
                 .build();
 
         mDelivery = new Handler(Looper.getMainLooper());
 
     }
+
+    /**
+     * Response拦截器
+     */
+    private static Interceptor REWRITE_CACHE_CONTROL_INTERCEPTOR = new Interceptor() {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            CacheControl cacheControl = new CacheControl.Builder()
+                    .maxAge(0, TimeUnit.SECONDS)
+                    .maxStale(30, TimeUnit.DAYS)
+                    .build();
+
+            Request request = chain.request();
+            if (!NetworkUtils.isNetworkAvailable(BkApp.getContext())) {
+                request = request.newBuilder()
+                        .cacheControl(cacheControl)
+                        .build();
+            }
+            Response response = chain.proceed(request);
+
+            if (NetworkUtils.isNetworkAvailable(BkApp.getContext())) {
+                int maxAge = 0;
+                return response.newBuilder()
+                        .removeHeader("Pragma")
+                        .header("Cache-Control", "public ,max-age=" + maxAge)
+                        .build();
+            } else {
+                int maxState = 60 * 60 * 24 * 7;
+                return response.newBuilder()
+                        .removeHeader("Pragma")
+                        .header("Cache-Control", "public ,only-if-cache ,max-stale=" + maxState)
+                        .build();
+            }
+        }
+    };
 
     //单例
     public synchronized static OkHttpUtils newInstance() {
@@ -72,15 +110,9 @@ public class OkHttpUtils {
     //GET
     private void getRequest(String url, final ResultCallback callback) {
         Request request;
-        //设置缓存时间为10m
-        CacheControl cacheControl = new CacheControl.Builder()
-                .maxAge(60, TimeUnit.SECONDS)
-                .build();
-        if (!NetworkUtils.isNetworkAvailable(BkApp.getContext())) {
-            request = new Request.Builder().url(url).cacheControl(CacheControl.FORCE_CACHE).build();
-        } else {
-            request = new Request.Builder().url(url).cacheControl(cacheControl).build();
-        }
+
+        request = new Request.Builder().url(url).build();
+
         deliveryResult(callback, request);
 
     }
@@ -108,6 +140,7 @@ public class OkHttpUtils {
 
             @Override
             public void onResponse(Call call, Response response) {
+                response.code();
                 try {
                     String str = response.body().string();
                     SunLog.d(TAG, "response cache:" + response.cacheResponse());
@@ -137,7 +170,9 @@ public class OkHttpUtils {
             public void run() {
                 if (callback != null) {
                     callback.onFailure(e);
-                    ShowToast.Short("数据加载失败！");
+                    if (!NetworkUtils.isNetworkAvailable(BkApp.getContext())){
+                        ShowToast.shortCenter(BkApp.getContext(),"网络连接异常");
+                    }else ShowToast.Short("数据加载失败！");
                 }
             }
         });
