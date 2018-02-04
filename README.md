@@ -1,14 +1,16 @@
 ### Blackboard黑板报 ,一个信息聚合App
 
-- 首页分为四大模块，包括：天气、新闻、电影和图片。而天气模块可展示未来7天天气预报；新闻包括最近热点新闻、NBA、汽车和笑话；电影包括豆瓣热映榜、TOP250。
+- [App下载地址](https://github.com/geelaro/Blackboard/releases).
 
-- 首页界面风格采用Material Design设计规范，使用了TabLayout和ViewPager配合，ViewPager切换Fragment，整体界面模仿了网易新闻。
+- 首页分为四大模块，包括：天气、新闻、电影和图片。而天气模块可展示未来7天天气预报；新闻包括最近热点新闻、NBA、汽车和笑话；电影包括豆瓣热映榜、TOP250.
 
-- 项目整体使用MVP结构，网络采用了OkHttp的缓存设置，实现无网络状态下浏览，其中天气板块数据采用ContentProvider + LoaderManager框架对其持久化。
+- 首页界面风格采用Material Design设计规范，使用了TabLayout和ViewPager配合，ViewPager切换Fragment，整体界面模仿了网易新闻.
 
-- 抽屉导航栏采用的是DrawerLayout和NavigationView配合，使用的icon来自[Material Design Icon](https://material.io/icons/)。
+- 项目整体使用MVP结构，网络采用了OkHttp的缓存设置，实现无网络状态下浏览，其中天气板块数据采用ContentProvider + LoaderManager框架对其持久化.
 
-- 设计思路参考了开源Repo。
+- 抽屉导航栏采用的是DrawerLayout和NavigationView配合，使用的icon来自[Material Design Icon](https://material.io/icons/).
+
+- 设计思路参考了开源Repo.
 
 ### Screenshot
 
