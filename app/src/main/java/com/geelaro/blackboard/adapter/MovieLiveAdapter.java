@@ -1,9 +1,9 @@
 package com.geelaro.blackboard.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.geelaro.blackboard.R;
 import com.geelaro.blackboard.base.beans.MoviesBean;
 import com.geelaro.blackboard.images.ImageGlide;
+import com.geelaro.blackboard.movies.widget.MovieDetailActivity;
 import com.geelaro.blackboard.utils.ToolUtils;
 
 import java.util.List;
@@ -49,9 +50,11 @@ public class MovieLiveAdapter extends RecyclerView.Adapter<MovieLiveAdapter.Item
         }
         MoviesBean bean = mData.get(position);
         //Image 尺寸
-        int width = (ToolUtils.getHeightInPx(mContext) - ToolUtils.dp2px(mContext,60)) / 3;
+        int width = (ToolUtils.getWidthInPx(mContext) - ToolUtils.dp2px(mContext,80)) / 3;
         int height = (int) (width * (383.0 / 270.0));
+
         holder.movieImage.setLayoutParams(new LinearLayout.LayoutParams(width, height));
+
         //加载
         ImageGlide.display(mContext, bean.getImgaeUri(), holder.movieImage);
         holder.movieTitle.setText(bean.getTitile());
@@ -60,6 +63,17 @@ public class MovieLiveAdapter extends RecyclerView.Adapter<MovieLiveAdapter.Item
         } else {
             holder.movieScore.setText(ToolUtils.formatScore(mContext, bean.getScore()));
         }
+        //
+        final String URL = bean.getAlt();
+        //Item click
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, MovieDetailActivity.class);
+                intent.putExtra("movies", URL);
+                mContext.startActivity(intent);
+            }
+        });
 
     }
 
@@ -72,12 +86,14 @@ public class MovieLiveAdapter extends RecyclerView.Adapter<MovieLiveAdapter.Item
         private ImageView movieImage;
         private TextView movieTitle;
         private TextView movieScore;
+        private View mView;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
-            movieImage = (ImageView) itemView.findViewById(R.id.movie_image);
-            movieTitle = (TextView) itemView.findViewById(R.id.movie_title);
-            movieScore = (TextView) itemView.findViewById(R.id.movie_score);
+            mView = itemView;
+            movieImage = (ImageView) mView.findViewById(R.id.movie_image);
+            movieTitle = (TextView) mView.findViewById(R.id.movie_title);
+            movieScore = (TextView) mView.findViewById(R.id.movie_score);
         }
     }
 }

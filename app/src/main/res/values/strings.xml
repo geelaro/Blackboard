@@ -47,7 +47,7 @@
     <!-- Strings related to Settings -->
 
     <!-- Location Settings -->
-    <string name="pref_location_label">Location</string>
+    <string name="pref_location_label">Location:Input the City Name in Pinyin</string>
 
     <string name="pref_location_key" translatable="false">location</string>
     <string name="pref_location_default" translatable="false">Nanjing</string>

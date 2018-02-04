@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.geelaro.blackboard.R;
+import com.geelaro.blackboard.movies.widget.MovieLiveFragment;
+import com.geelaro.blackboard.movies.widget.MovieTop250Fragment;
 
 import java.util.ArrayList;
 import java.util.List;

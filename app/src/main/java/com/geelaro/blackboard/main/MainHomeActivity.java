@@ -17,7 +17,6 @@ import com.geelaro.blackboard.about.AboutFragment;
 import com.geelaro.blackboard.images.ImageFragment;
 import com.geelaro.blackboard.main.contract.MainContract;
 import com.geelaro.blackboard.main.presenter.MainPresenter;
-import com.geelaro.blackboard.movies.MovieTop250Fragment;
 import com.geelaro.blackboard.movies.MoviewFragment;
 import com.geelaro.blackboard.news.widget.NewsFragment;
 import com.geelaro.blackboard.settings.SettingsActivity;
@@ -61,7 +60,6 @@ public class MainHomeActivity extends AppCompatActivity
         mainPresenter = new MainPresenter(this);
 
         switch2Weather();//首次进入程序是WeatherFragment
-//        switch2News();
 
     }
     @Override

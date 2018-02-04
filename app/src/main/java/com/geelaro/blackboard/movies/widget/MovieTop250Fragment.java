@@ -1,4 +1,4 @@
-package com.geelaro.blackboard.movies;
+package com.geelaro.blackboard.movies.widget;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -60,7 +60,7 @@ public class MovieTop250Fragment extends BaseListFragment implements MovieView {
                 public void run() {
                     start += count;
                     mMoviePresenter.getMovieTop250(start, count);
-                    Log.d("Thread", "loadingMoreData: "+Thread.currentThread().getName());
+                    Log.d(TAG, "loadingMoreData: ");
                 }
             }, 1000);
         }
@@ -86,8 +86,10 @@ public class MovieTop250Fragment extends BaseListFragment implements MovieView {
         mData.addAll(list);
         if (!isLoadMore) {
             mMovieTop250Adapter.setData(mData);
-        } else if (mData!=null){
-
+        }
+        if (list==null){
+            mMovieTop250Adapter.updateStatus(MovieTop250Adapter.LOAD_NONE);
+        } else {
             mMovieTop250Adapter.updateStatus(MovieTop250Adapter.LOAD_PULL_TO);
         }
         mMovieTop250Adapter.notifyDataSetChanged();
@@ -115,14 +117,11 @@ public class MovieTop250Fragment extends BaseListFragment implements MovieView {
             super.onScrollStateChanged(recyclerView, newState);
             if (!recyclerView.canScrollVertically(1)) {
                 //手机向上不能滑动,到达底部
-                mMovieTop250Adapter.updateStatus(MovieTop250Adapter.LOAD_PULL_TO);
-
                 isLoadMore = true;
 
                 mMovieTop250Adapter.updateStatus(MovieTop250Adapter.LOAD_MORE);
 
                 loadingMoreData();
-
             }
         }
 

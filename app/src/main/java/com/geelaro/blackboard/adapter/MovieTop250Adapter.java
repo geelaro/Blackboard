@@ -3,6 +3,7 @@ package com.geelaro.blackboard.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 import com.geelaro.blackboard.R;
 import com.geelaro.blackboard.base.beans.MoviesBean;
 import com.geelaro.blackboard.images.ImageGlide;
-import com.geelaro.blackboard.movies.MovieDetailActivity;
+import com.geelaro.blackboard.movies.widget.MovieDetailActivity;
 import com.geelaro.blackboard.utils.ToolUtils;
 
 import java.util.List;
@@ -81,7 +82,7 @@ public class MovieTop250Adapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             itemViewHolder.movieDate.setText(moviesBean.getYear());
             itemViewHolder.movieScore.setText(ToolUtils.formatScore(mContext, moviesBean.getScore()));
             final String URL = moviesBean.getAlt();
-
+            //Item Click
             itemViewHolder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

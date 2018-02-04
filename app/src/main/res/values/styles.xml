@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -31,6 +31,14 @@
     <style name="ToolBarTextAppearance">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="MovieLiveText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textColor">@color/secondary_text</item>
     </style>
 
 </resources>

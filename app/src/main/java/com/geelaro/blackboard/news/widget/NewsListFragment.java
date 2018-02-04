@@ -20,6 +20,7 @@ import com.geelaro.blackboard.news.presenter.NewsPresenter;
 import com.geelaro.blackboard.news.presenter.NewsPresenterImpl;
 import com.geelaro.blackboard.news.view.NewsView;
 import com.geelaro.blackboard.utils.ShowToast;
+import com.geelaro.blackboard.utils.SunApi;
 import com.geelaro.blackboard.utils.SunLog;
 import com.geelaro.blackboard.utils.BkApp;
 
@@ -97,8 +98,9 @@ public class NewsListFragment extends Fragment implements NewsView, SwipeRefresh
             if (newState == RecyclerView.SCROLL_STATE_IDLE&&
                     lastVisibleItem + 1 == mNewsAdapter.getItemCount()) {
                 //加载更多
-//                mPresenter.loadNewsList(mType, pageIndex + Urls.PAGE_NUM);
                 ShowToast.Short("向上滑动加载更多精彩内容...");
+                pageIndex+=SunApi.PAGE_NUM;
+                mPresenter.loadNewsList(mType, pageIndex + SunApi.PAGE_NUM);
             }
         }
 
@@ -114,7 +116,6 @@ public class NewsListFragment extends Fragment implements NewsView, SwipeRefresh
         if (mData == null) {
             mData = new ArrayList<>();
         }
-        mData.clear();//clear data
         mData.addAll(list);
         if (pageIndex == 0) {
             mNewsAdapter.setData(mData);
@@ -122,7 +123,6 @@ public class NewsListFragment extends Fragment implements NewsView, SwipeRefresh
             mNewsAdapter.notifyDataSetChanged();
         }
 
-//        pageIndex += Urls.PAGE_NUM; //new pageIndex
     }
 
     private NewsAdapter.OnItemClickListener itemClickListener = new NewsAdapter.OnItemClickListener() {
@@ -157,7 +157,9 @@ public class NewsListFragment extends Fragment implements NewsView, SwipeRefresh
     @Override
     public void onRefresh() {
         int pageIndex = 0;
-
+        if (mData!=null){
+            mData.clear();//clear data
+        }
         mPresenter.loadNewsList(mType, pageIndex);
     }
 }

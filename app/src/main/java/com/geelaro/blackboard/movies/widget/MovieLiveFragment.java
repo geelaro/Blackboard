@@ -1,4 +1,4 @@
-package com.geelaro.blackboard.movies;
+package com.geelaro.blackboard.movies.widget;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;

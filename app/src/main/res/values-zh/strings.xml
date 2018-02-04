@@ -46,7 +46,7 @@
     <!-- Strings related to Settings -->
 
     <!-- Location Settings -->
-    <string name="pref_location_label">地区</string>
+    <string name="pref_location_label">地区：请输入城市名的拼音</string>
 
     <!--<string name="pref_location_key" translatable="false">location</string>-->
     <!--<string name="pref_location_default" translatable="false">Nanjing</string>-->

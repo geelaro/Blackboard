@@ -30,7 +30,7 @@
             android:name="com.geelaro.blackboard.news.widget.NewsDetailActivity"
             android:parentActivityName="com.geelaro.blackboard.main.MainHomeActivity">
         </activity>
-        <activity android:name="com.geelaro.blackboard.movies.MovieDetailActivity"
+        <activity android:name="com.geelaro.blackboard.movies.widget.MovieDetailActivity"
             android:parentActivityName="com.geelaro.blackboard.main.MainHomeActivity">
         </activity>
         <activity

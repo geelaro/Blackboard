@@ -42,7 +42,7 @@ public abstract class BaseWebViewActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview_detail);
-        mToolbar = (Toolbar) findViewById(R.id.detail_bar);
+        mToolbar = (Toolbar) findViewById(R.id.webView_bar);
         mProgressBar = (ProgressBar) findViewById(R.id.progressbar);
         mWebView = (WebView) findViewById(R.id.detail_content);
         //URL

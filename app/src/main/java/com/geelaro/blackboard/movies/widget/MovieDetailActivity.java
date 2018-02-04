@@ -1,4 +1,4 @@
-package com.geelaro.blackboard.movies;
+package com.geelaro.blackboard.movies.widget;
 
 import com.geelaro.blackboard.base.BaseWebViewActivity;
 
