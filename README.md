@@ -1,6 +1,6 @@
 ### Blackboard黑板报 ,一个信息聚合App
 
-- [App下载地址](https://github.com/geelaro/Blackboard/releases).
+- [Google Play](https://play.google.com/store/apps/details?id=com.geelaro.blackboard) | [App下载地址](https://github.com/geelaro/Blackboard/releases).  
 
 - 首页分为四大模块，包括：天气、新闻、电影和图片。而天气模块可展示未来7天天气预报；新闻包括最近热点新闻、NBA、汽车和笑话；电影包括豆瓣热映榜、TOP250.
 
