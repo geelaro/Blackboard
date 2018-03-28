@@ -1,4 +1,5 @@
 ### Blackboard黑板报 ,一个信息聚合App
+- V2.0版本重构中....
 
 - [Google Play](https://play.google.com/store/apps/details?id=com.geelaro.blackboard) | [App下载地址](https://github.com/geelaro/Blackboard/releases).  
 
